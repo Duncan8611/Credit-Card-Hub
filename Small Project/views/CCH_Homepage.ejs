@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCH Homepage</title>
+  <link rel="stylesheet" href="/css/CCH.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <script src="/js/bootstrap.bundle.js"></script>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/CCH.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body style="background-color: rgb(235, 231, 231);">
+  <!-- 導覽列內容區 -->
+  <nav class="navbar navbar-expand-lg bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><abbr title="CCH 首頁"><img style="width: 200px; " src="/image/Credit Card Hub Navbar-brand.png"
+        alt="Credit Card Hub"></abbr></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" aria-current="page" href="/introduction.html"
+              id="creditIntroLink">信用卡簡介</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" href="/Condition_search" id="conditionSearchLink">條件查詢</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle text-white fw-bolder" href="#" id="relatedLinkLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              相關連結
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Official_banks.html">各家銀行官網</a></li>
+              <li><a class="dropdown-item" href="/Credit_cards">信用卡總覽</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bolder" href="/Opinion_feedback.html" id="feedbackLink">意見回饋</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        <div class="me-4 mt-3">
+          <p class="fs-5 ">你好 <span class="text-white lh-1"> <%=emailName%></p>
+        </div>
+        <div class="d-flex mt-2">
+          <%if (emailName == "Guest") {%>
+          <form method="get" action="/login.html">
+            <input class="btn btn-outline-success" type="submit" value="登入"></input>
+          </form>
+        <%} else {%>
+          <div>
+            <a href="/membershipCenter.html"><abbr title="會員中心"><i style="font-size: 2rem;" class="bi bi-person-circle me-3"></i></abbr></a>
+          </div>
+          <form method="get" action="/logout.html">
+            <input class="btn btn-outline-success" type="submit" value="登出"></input>
+          </form>
+        <% } %>
+          
+        </div>
+      </div>    
+    </div>
+  </nav>
+  <main>
+    <section class="row">
+      <!-- 左側廣告區 -->
+      <div class="col-2">
+        <div class="mt-3">
+          <h5 class="text-center">ADVERTISEMENT</h5>
+          <a target="_blank" href="https://campus.w3schools.com/collections/course-catalog/products/front-end-course"><img class="w-100 h-75" src="/image/W3 school AD-3.png" alt="W3 school AD-2"></a>
+        </div>
+      </div>
+      <div class="col-8">
+        <!-- 環撥圖片區 -->
+        <section class="container-fluid d-flex justify-content-center mb-5">
+        <div id="carouselIndicators" class="carousel slide mt-3 border border-3 rounded border-dark w-100" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner " id="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+              <a href="https://www.ctbcbank.com/content/dam/minisite/long/creditcard/LINEPay/index.html" id="carousel-item-link"><img style="width: 100%;height: 70vh;" class="" src="/image/C_LINEPay_promo_1101230_01.jpg"
+                  class="" alt="Line-Pay Card" id="carouselPic"></a>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <a href="https://www.fubon.com/banking/personal/credit_card/all_card/omiyage/omiyage.htm" id="carousel-item-link"><img style="width: 100%;height: 70vh;" class="" src="/image/J_card promotion.jpg" class="d-block"
+                  alt="富邦J卡" id="carouselPic"></a>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <a href="https://www.fubon.com/banking/personal/credit_card/all_card/openpossible/openpossible.htm" id="carousel-item-link"><img style="width: 100%;height: 70vh;" class="" src="/image/Open Possible  Card Promotion.jpg"
+                  class="" alt="Open-Possible Card" id="carouselPic"></a>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        </section>
+        <!-- 卡片Card內容區 -->
+        <section class="d-flex justify-content-evenly mb-5">
+          <!-- 聯邦幸福M卡 -->
+          <div class="card me-5" style="width: 18rem;">
+            <img src="/image/聯邦幸福M card.jpg" class="card-img-top w-100" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>聯邦幸福M卡</b></h5>
+              <ul class="card-text">
+                <li>航空、訂房、旅行社、交通、最高6%回饋</li>
+                <li>一般消費國外3%、國內1%</li>
+                <li>國內保險1.5%</li>
+              </ul>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary"><a class="text-white text-decoration-none" href="#">前往官方網站</a></button>
+            </div>
+          </div>
+          <!-- 玉山ubear卡 -->
+          <div class="card me-5" style="width: 18rem;">
+            <img src="/image/u-bear card pic.png" class="card-img-top w-100" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>玉山 Ubear卡</b></h5>
+              <ul class="card-text">
+                <li>Line Pay最高享8%現金回饋</li>
+                <li>新卡網購最高 5%現金回饋</li>
+                <li>指定娛樂、影音平台最高13%現金回饋</li>          
+              </ul>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary"><a class="text-white text-decoration-none" href="#">前往官方網站</a></button>
+            </div>
+          </div>
+          <!-- Lala port聯名卡 -->
+          <div class="card me-5" style="width: 18rem;">
+            <img src="/image/LaLaport card.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>Mitsui Shopping Park LaLaport聯名卡</b></h5>
+              <ul class="card-text">
+                <li>天天館內免費停車2小時</li>
+                <li>新卡首刷餐飲加碼10%回饋</li>
+                <li>中信點1點=1元，館內消費折抵無上限</li>          
+              </ul>
+            </div>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary"><a class="text-white text-decoration-none" href="#">前往官方網站</a></button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- 右側廣告區 -->
+      <div class="col-2">
+        <div class="mt-3">
+          <h5 class="text-center">ADVERTISEMENT</h5>
+          <a target="_blank"  href="#"><img class="w-100 h-75" src="/image/W3 school AD-1.png" alt=""></a>
+        </div>
+      </div>
+    </section>
+    <!-- 返回最上面按鈕 -->
+    <div class="position-fixed fixed-bottom d-flex justify-content-end" id="topBtn">
+      <a class="btn btn-danger me-5 mb-5" class="" href="#top">TOP</a>
+    </div>
+  </main>
+  <!-- 註腳商標區 -->
+  <footer id="HomepageFooter">
+    <ul>
+      <li>鄧肯股份沒錢公司 建議瀏覽器版本:IE10、Chrome 4.0、Safari 5、FireFox 3.0 以上版本</li>
+      <li>電話:0800-096-000</li>
+    </ul>  
+  </footer>
+</body>
+
+</html>

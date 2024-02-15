@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCH Introduction</title>
+  <link rel="stylesheet" href="/css/CCH.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <script src="/js/bootstrap.bundle.js"></script>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/CCH.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/animate.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><abbr title="CCH 首頁"><img style="width: 200px; " src="/image/Credit Card Hub Navbar-brand.png"
+        alt="Credit Card Hub"></abbr></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" aria-current="page" href="/introduction.html"
+              id="creditIntroLink">信用卡簡介</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" href="/Condition_search" id="conditionSearchLink">條件查詢</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle text-white fw-bolder" href="#" id="relatedLinkLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              相關連結
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Official_banks.html">各家銀行官網</a></li>
+              <li><a class="dropdown-item" href="/Credit_cards">信用卡總覽</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bolder" href="/Opinion_feedback.html" id="feedbackLink">意見回饋</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        <div class="me-4 mt-3">
+          <p class="fs-5 ">你好 <span class="text-white lh-1"> <%=emailName%></p>
+        </div>
+        <div class="d-flex mt-2">
+          <%if (emailName == "Guest") {%>
+          <form method="get" action="/login.html">
+            <input class="btn btn-outline-success" type="submit" value="登入"></input>
+          </form>
+        <%} else {%>
+          <div>
+            <a href="/membershipCenter.html"><abbr title="會員中心"><i style="font-size: 2rem;" class="bi bi-person-circle me-3"></i></abbr></a>
+          </div>
+          <form method="get" action="/logout.html">
+            <input class="btn btn-outline-success" type="submit" value="登出"></input>
+          </form>
+        <% } %>
+          
+        </div>
+      </div>    
+    </div>
+  </nav>
+  <main class="container-fluid">
+    <div class="row"> 
+    <section class="col-2 pt-5" id="introductionIndex">
+        <div class="">
+          <ul class="lh-lg">
+            <li style="list-style: none; font-size: 40px; font-weight: 700;"><i class="bi bi-journal-bookmark me-3"></i>目錄</li>
+            <hr>
+            <li onclick="showChosenTitle('whatIsCreditCard')" class=""><a class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover " 
+              href="#whatIsCreditCard"><i style="line-height: 1rem;" class="bi bi-credit-card-2-back-fill me-2"></i>信用卡是什麼<i style="line-height: 1rem;" class="bi bi-arrow-bar-right"></i></a></li>
+            <li onclick="showChosenTitle('creditCardAssociation')"><a class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover " 
+              href="#creditCardAssociation"><i style="line-height: 1rem;" class="bi bi-building-fill me-3"></i>信用卡組織<i style="line-height: 1rem;" class="bi bi-arrow-bar-right"></i></a></li>
+            <li onclick="showChosenTitle('category')"><a class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+              href="#category"><i style="line-height: 1rem;" class="bi bi-card-list me-3"></i>分類<i style="line-height: 1rem;" class="bi bi-arrow-bar-right"></i></a></li>
+            <li onclick="showChosenTitle('operation')"><a class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+              href="#operation"><i style="line-height: 1rem;" class="bi bi-ubuntu me-3"></i>運作<i style="line-height: 1rem;" class="bi bi-arrow-bar-right"></i></a></li>
+            <li onclick="showChosenTitle('safety')"><a class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+              href="#safety"><i style="line-height: 1rem;" class="bi bi-clipboard2-check-fill me-3"></i>安全<i style="line-height: 1rem;" class="bi bi-arrow-bar-right"></i></a></li>
+          </ul>
+        </div>  
+      </section>
+      
+      <section class="col-9 pt-5" id="content">
+        <!-- 信用卡是什麼內容區 -->
+        <div>
+          <h2 class="h2" id="whatIsCreditCard"><b>信用卡是什麼</b><i style="line-height: 1rem;" class="bi bi-credit-card-2-back-fill ms-3"></i></h2>
+          <p>信用卡（英語：Credit Card），是一種非現金交易付款的方式，是銀行業提供的信貸服務。信用卡一般是長85.60毫米、寬53.98毫米、厚0.76毫米的塑膠卡片（尺寸大小是由ISO
+            7810、7816系列的檔案定義），現市面上也有金屬卡面，由銀行或信用卡公司依照使用者的信用度與財力發給持卡人，持卡人持信用卡消費時無須支付現金，帳單日時再進行還款。除部份與金融卡結合的信用卡外，一般的信用卡與借記卡、提款卡不同，信用卡不會由使用者的帳戶直接扣除資金。
+          </p>
+        </div>
+        <hr>
+        <!-- 信用卡組織內容區 -->
+        <div>
+          <h2 id="creditCardAssociation"><b>信用卡組織</b><i style="line-height: 1rem;" class="bi bi-building-fill ms-3"></i></h2>
+          <p>國際上主要的發卡組織有Visa、萬事達卡、美國運通、大來國際、JCB、中國銀聯及發現卡等。
+
+            在中國大陸，信用卡的卡組織主要是中國銀聯，發卡機構全部為銀行。為了方便國際使用，有些銀行發行同時擁有中國銀聯和Visa、萬事達卡或JCB等外國卡組織兩種標識的雙幣信用卡（簡稱雙幣卡）。但這類雙幣卡組織發行的信用卡卻受制於卡組織的限制，無法在卡片上加入晶片和非接觸式付款功能。而近年來中國大陸的銀行也逐步開始發行Visa、萬事達卡單標識的信用卡，具有EMV晶片以及非接觸式付款功能，但這類卡片受制於中國監管要求無法在中國大陸境內使用。
+
+            由於網際網路金融的發展，已經出現了沒有實體卡片，僅有卡號的虛擬信用卡，供持卡者在非實體店面交易時使用或者綁定Google Wallet、Apple
+            Pay等電子錢包讓使用者能夠通過智慧型手機在實體店使用。但在一些國家，其合法性和監管問題存在爭議。
+
+            近年，因擔心信用卡盜用等問題，部分銀行已經提供只顯示持卡人名稱的信用卡，不會顯示信用卡號碼、到期日和安全碼，進一步減少被盜用風險。</p>
+        </div>
+        <hr>
+        <!-- 分類內容區 -->
+        <div>
+          <h2 id="category"><b>分類</b><i style="line-height: 1rem;" class="bi bi-card-list ms-3"></i></h2>
+          <ul>
+            <li>按國際發卡組織分：威士卡（Visa）、萬事達卡（MasterCard）、美國運通卡（AmEX）、大來信用証（Diners Club）、發現卡（探索銀行）、日財卡（JCB）、中國銀聯卡（China
+              UnionPay）、聯合信用卡（臺灣）、NETS卡（新加坡）、BC卡（韓國）、Banknetvn（越南）等等。</li>
+            <li>按幣種分：單幣卡、雙幣卡</li>
+            <li>按信用等級分：普通卡（銀卡）、金卡、白金卡、鈦金卡（御璽卡、晶緻卡、尊尚白金卡）、無限卡（世界卡、極緻卡、尊緻卡、鑽石卡）及黑卡（世界之極卡、無限殊榮卡）。</li>
+            <li>按是否聯名發行分：聯名卡、標準卡（非聯名卡）、認同卡。</li>
+            <li>按卡片形狀及材質分：標準卡、迷你卡、異形卡、透明卡等</li>
+            <li>按資訊儲存介質分：磁條卡、晶片卡</li>
+            <li>按卡片間的關係分：主卡、附屬卡</li>
+            <li>按持有人的身分分：個人卡、公務卡、公司卡（商務卡）</li>
+          </ul>
+        </div>
+        <hr>
+        <!-- 運作內容區 -->
+        <div>
+          <h2 id="operation"><b>運作</b><i style="line-height: 1rem;" class="bi bi-ubuntu ms-3"></i></h2>
+          <h4>申請</h4>
+          <p>大多數情況下，具有完全民事行為能力（中國為年滿18周歲的公民）的、有一定直接經濟來源的公民，或沒有直接經濟來源的在校大學生（僅
+            限本科生，部分銀行更限於中國「211工程」之重點大學），可以向發卡行申請信用卡。但是現在，在中國，銀監會已經對學生辦理信用卡的行
+            為嚴加管束，以防止沒有穩定經濟收入的學生濫用信用卡，過早透支信用，成為卡奴。幾乎所有的銀行都已經停止核發學生信用卡，或者是要求
+            學生監護人簽署第三方還款協定。有時，法人也可以作為申請人。申請方式一般是通過填寫信用卡申請表，並提交一定的證件影印件與證明等給
+            發卡行。申請表都附帶有使用信用卡的合約，申請人授權發卡行或相關部門調查其相關資訊，以及提交資訊真實性的聲明，發卡行的隱私保護政</p>
+          <h4>核發</h4>
+          <p>通常銀行會根據申請資料，考察申請人多方面的資料與經濟情況，以及各銀行內部的信審政策之標準，來判斷是否發信用卡給申請人。
+            考慮的因素有，申請人過去的信用記錄、申請人已知的資產、職業特性等，現代許多銀行以電腦評分的方式，根據前述的資料量化成分數，
+            以做為審核的參考。發卡行稽核的具體因素與過程屬於商業機密，外界一般很難了解。各個發卡行的標準也不盡相同，因此，
+            同樣的材料在不同的銀行可能會出現核發的信用額度不同，信用卡的種類不同，甚至會出現有的銀行稽核通過，而有的銀行拒發的情況。</p>
+          <h4>開卡</h4>
+          <p>由於信用卡申請通過後是通過郵寄將卡片寄出等方式，所以並不能保證領取人就是申請人。為了使申請人和銀行免遭盜刷損失，信用卡在正式啟用前設定了開卡程式。開卡主要是通過電話或者網路等，核對申請時提供的相關個人資訊，符合後即完成開卡程式。此時申請人變為卡片持有人，在卡片背後簽章後可以正式開始使用。</p>
+        </div>
+        <hr>
+        <!-- 安全內容區 -->
+        <div>
+          <h2 id="safety"><b>安全</b><i style="line-height: 1rem;" class="bi bi-clipboard2-check-fill ms-3"></i></h2>
+          <p>信用卡的安全問題主要分為下述五大方面：</p>
+          <ol>
+            <li>信用卡：不肖人士或犯罪集團以假卡或廢卡（過期/遺失作廢/磁帶損毀……等）冒充正卡消費，直接矇騙商家或甚發卡機構。</li>
+            <li>持卡人：卡片保管不善/處理不當（過期/磁帶失效的信用卡未進行銷毀，或遺失未立即作廢等），以及個人資訊無意之間遭竊取或騙取。</li>
+            <li>消費商家：服務人員於持卡人消費過程超刷，或竊取其信用卡資訊至其他商家消費。（於實體商家與網路虛擬商家皆有可能發生）</li>
+            <li>發卡機構：電腦系統遭惡意入侵，竊取客戶基本/交易資訊。亦有機構內部從業人員監守自盜或內神通外鬼等不肖情事。</li>
+            <li>交易系統與機制：只要是人類所製作的或經手的，就免不了人為的錯誤與疏失；再嚴謹的交易機制，配合從確認到結算的世界級交易系統，仍然有被入侵的可能，而且所謂的「入侵」其實也具有等級層次上的差別。</li>
+          </ol>
+        </div>
+      </section>
+    </div> 
+  </main>
+  <!-- 返回最上面按鈕 -->
+  <div class="position-fixed fixed-bottom d-flex justify-content-end" id="topBtn">
+    <a class="btn btn-danger me-5 mb-5" class="" href="#top">TOP</a>
+  </div>
+  <footer id="HomepageFooter">
+    <ul>
+      <li>鄧肯股份沒錢公司 建議瀏覽器版本:IE10、Chrome 4.0、Safari 5、FireFox 3.0 以上版本</li>
+      <li>電話:0800-096-000</li>
+    </ul>  
+  </footer>
+</body>
+<script>
+  function showChosenTitle(titleId){
+    document.getElementById(titleId).className = "animate__animated animate__flash"
+    setTimeout(() => {
+      document.getElementById(titleId).className = ""
+    }, 1000); 
+  }
+</script>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCH Official Banks</title>
+    <link rel="stylesheet" href="/css/CCH.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/bootstrap.bundle.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/CCH.js"></script>
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  </head>
+
+<body style="background-color: rgb(235, 231, 231);">
+  <nav class="navbar navbar-expand-lg bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><abbr title="CCH 首頁"><img style="width: 200px; " src="/image/Credit Card Hub Navbar-brand.png"
+        alt="Credit Card Hub"></abbr></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" aria-current="page" href="/introduction.html"
+              id="creditIntroLink">信用卡簡介</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" href="/Condition_search" id="conditionSearchLink">條件查詢</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle text-white fw-bolder" href="#" id="relatedLinkLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              相關連結
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Official_banks.html">各家銀行官網</a></li>
+              <li><a class="dropdown-item" href="/Credit_cards">信用卡總覽</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bolder" href="/Opinion_feedback.html" id="feedbackLink">意見回饋</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        <div class="me-4 mt-3">
+          <p class="fs-5 ">你好 <span class="text-white lh-1"> <%=emailName%></p>
+        </div>
+        <div class="d-flex mt-2">
+          <%if (emailName == "Guest") {%>
+          <form method="get" action="/login.html">
+            <input class="btn btn-outline-success" type="submit" value="登入"></input>
+          </form>
+        <%} else {%>
+          <div>
+            <a href="/membershipCenter.html"><abbr title="會員中心"><i style="font-size: 2rem;" class="bi bi-person-circle me-3"></i></abbr></a>
+          </div>
+          <form method="get" action="/logout.html">
+            <input class="btn btn-outline-success" type="submit" value="登出"></input>
+          </form>
+        <% } %>
+          
+        </div>
+      </div>    
+    </div>
+  </nav>
+  <main>
+    <section class="row">
+      <!-- 信用卡目錄區 -->
+      <div style="background-color: aquamarine;" class="col-2" id="">
+        <ul class="lh-lg">
+          <li style="list-style: none; font-size: 40px; font-weight: 700;"><i class="bi bi-journal-bookmark me-3"></i>目錄
+          </li>
+          <hr>
+          <li><a onclick="showChosenBank('UnionBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+            href="#"><i class="bi bi-bank lh-1"></i>聯邦銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('TaipeiFubonBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover " 
+            href="#"><i class="bi bi-bank lh-1"></i>台北富邦銀行<i style="line-height: 1rem;"
+            class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('ESunBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+              href="#"><i class="bi bi-bank lh-1"></i>玉山銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('CTBCBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover " 
+            href="#"><i class="bi bi-bank lh-1"></i>中國信託銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('TaishinBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+            href="#"><i class="bi bi-bank lh-1"></i>台新銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('TaichungBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+            href="#"><i class="bi bi-bank lh-1"></i>台中銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('SinoPacBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+            href="#"><i class="bi bi-bank lh-1"></i>永豐銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showChosenBank('MegaBankLogo')" class="focus-ring fs-6 text-decoration-none text-secondary icon-link icon-link-hover" 
+            href="#"><i class="bi bi-bank lh-1"></i>兆豐銀行<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-8">
+        <!-- 第一排各家銀行 -->
+        <div class="d-flex justify-content-evenly">
+            <figure class="figure mt-3">
+              <a target="_blank" href="https://www.ubot.com.tw/home"><img style="width: 10rem;height: 10rem;" 
+                class="figure-img img-fluid img-thumbnail rounded" src="/image/Union Bank Logo.jpg" 
+                alt="Union Bank Logo" id="UnionBankLogo"></a>
+              <figcaption class="figure-caption text-center fs-4">聯邦銀行</figcaption>
+            </figure>
+            <figure class="figure mt-3">
+              <a target="_blank" href="https://ebank.taipeifubon.com.tw/B2C/common/Index.faces"><img style="width: 10rem;" 
+                class="figure-img img-fluid img-thumbnail rounded" src="/image/Taipei Fubon Bank Logo.jpg" 
+                alt="Taipei Fubon Bank Logo" id="TaipeiFubonBankLogo"></a>
+              <figcaption class="figure-caption text-center fs-4">台北富邦銀行</figcaption>
+            </figure>
+            <figure class="figure mt-3">
+              <a target="_blank" href="https://www.esunbank.com/zh-tw/personal"><img style="width: 10rem;height: 10rem;" 
+                class="figure-img img-fluid img-thumbnail rounded" src="/image/E Sun Bank Logo.jpg" 
+                alt="E Sun Bank Logo" id="ESunBankLogo"></a>
+              <figcaption class="figure-caption text-center fs-4">玉山銀行</figcaption>
+            </figure>
+            <figure class="figure mt-3">
+              <a target="_blank" href="https://www.ctbcbank.com/twrbo/zh_tw/index.html"><img style="width: 10rem;height: 10rem;" 
+                class="figure-img img-fluid img-thumbnail rounded" src="/image/CTBC Bank Logo.jpg" 
+                alt="CTBC Bank Logo" id="CTBCBankLogo"></a>
+              <figcaption class="figure-caption text-center fs-4">中國信託銀行</figcaption>
+            </figure>
+        </div>
+        <!-- 第二排各家銀行 -->
+        <div class="d-flex justify-content-evenly">
+          
+          <figure class="figure mt-3">
+            <a target="_blank" href="https://www.taishinbank.com.tw/TSB/personal/"><img style="width: 10rem;height: 10rem;" 
+              class="figure-img img-fluid img-thumbnail rounded" src="/image/Taishin Bank Logo.png" 
+              alt="Taishin Bank Logo" id="TaishinBankLogo"></a>
+            <figcaption class="figure-caption text-center fs-4">台新銀行</figcaption>
+          </figure>
+          <figure class="figure mt-3">
+            <a target="_blank" href="https://www.tcbbank.com.tw/index.html"><img style="width: 10rem;height: 10rem;" 
+              class="figure-img img-fluid img-thumbnail rounded" src="/image/Taichung Bank Logo.png" 
+              alt="Taichung Bank Logo" id="TaichungBankLogo"></a>
+            <figcaption class="figure-caption text-center fs-4">台中銀行</figcaption>
+          </figure>
+          <figure class="figure mt-3">
+            <a target="_blank" href="https://bank.sinopac.com/sinopacBT/index.html"><img style="width: 10rem;height: 10rem;" 
+              class="figure-img img-fluid img-thumbnail rounded" src="/image/SinoPac Bank Logo.jpg" 
+              alt="SinoPac Bank Logo" id="SinoPacBankLogo"></a>
+            <figcaption class="figure-caption text-center fs-4">永豐銀行</figcaption>
+          </figure>
+          <figure class="figure mt-3">
+            <a target="_blank" href="https://www.megabank.com.tw/personal"><img style="width: 10rem;height: 10rem;" 
+              class="figure-img img-fluid img-thumbnail rounded" src="/image/Mega Bank Logo.jpg" 
+              alt="Mega Bank Logo" id="MegaBankLogo"></a>
+            <figcaption class="figure-caption text-center fs-4">兆豐銀行</figcaption>
+          </figure>
+        </div>
+      </div>
+      <!-- 廣告區 -->
+      <div class="col-2 bg-white">
+        <div class="mt-3">
+          <h5 class="text-center">ADVERTISEMENT</h5>
+          <a href="https://campus.w3schools.com/collections/course-catalog/products/w3schools-full-access-course"><img class="w-100 h-100" src="/image/W3 school AD-2.png" alt="W3 school AD-2"></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- 註腳商標區 -->
+  <footer id="HomepageFooter">
+    <ul>
+      <li>鄧肯股份沒錢公司 建議瀏覽器版本:IE10、Chrome 4.0、Safari 5、FireFox 3.0 以上版本</li>
+      <li>電話:0800-096-000</li>
+    </ul>
+  </footer>
+  <!-- 返回最上面按鈕 -->
+  <div class="position-fixed fixed-bottom d-flex justify-content-end" id="topBtn">
+    <a class="btn btn-danger me-5 mb-5" class="" href="#top">TOP</a>
+  </div>
+</body>
+<script>
+  function showChosenBank(BankLogoId){
+    document.getElementById(BankLogoId).className = "figure-img img-fluid img-thumbnail rounded animate__animated animate__bounce"
+    setTimeout(() => {
+      document.getElementById(BankLogoId).className = "figure-img img-fluid img-thumbnail rounded"
+    }, 1000); 
+  }
+  
+</script>
+</html>

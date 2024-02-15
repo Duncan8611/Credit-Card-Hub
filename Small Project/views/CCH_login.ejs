@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CCH Introduction</title>
+        <link rel="stylesheet" href="/css/CCH.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <script src="/js/bootstrap.bundle.js"></script>
+        <script src="/js/jquery.js"></script>
+        <script src="/js/CCH.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="/css/animate.css">
+    </head>
+<body style="background-color: grey;">
+    <nav class="navbar navbar-expand-lg bg-danger">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><abbr title="CCH 首頁"><img style="width: 200px; " src="/image/Credit Card Hub Navbar-brand.png"
+            alt="Credit Card Hub"></abbr></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item ms-3">
+                <a class="nav-link text-white fw-bolder" aria-current="page" href="/introduction.html"
+                  id="creditIntroLink">信用卡簡介</a>
+              </li>
+              <li class="nav-item ms-3">
+                <a class="nav-link text-white fw-bolder" href="/Condition_search" id="conditionSearchLink">條件查詢</a>
+              </li>
+              <li class="nav-item dropdown ms-3">
+                <a class="nav-link dropdown-toggle text-white fw-bolder" href="#" id="relatedLinkLink" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  相關連結
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/Official_banks.html">各家銀行官網</a></li>
+                  <li><a class="dropdown-item" href="/Credit_cards">信用卡總覽</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white fw-bolder" href="/Opinion_feedback.html" id="feedbackLink">意見回饋</a>
+              </li>
+            </ul>
+          </div>
+          <div class="d-flex">
+            <div class="me-4 mt-3">
+              <p class="fs-5 ">你好 <span class="text-white lh-1">Guest</span></p>
+            </div>
+          </div>    
+        </div>
+    </nav>
+    <main>
+      <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="card ms-3" style="width: 40rem; ">
+          <!-- 登入頁面標題 -->
+          <div class="card-body">
+            <h5 style="text-align: center;" class="card-title text-danger">登入</h5>
+          </div>
+          <!-- 登入帳號密碼輸入區 -->
+          <div class="d-flex justify-content-center">
+            <form action="/accountCheck" method="post">
+              <label style="justify-content: center;" for="CCHAccount">電子郵件:</label><br>
+              <input style="width: 20rem;" class="form-control" name="CCHEmail" type="email" placeholder="example@example.com" id="CCHAccount">
+              <br>
+              <label for="CCHPassword">密碼:</label><br>
+              <input style="width: 20rem;" class="form-control" name="CCHPassword" type="text" id="CCHPassword">
+              <input style="margin-left: 40%;" class="mt-5 btn btn-info" type="submit" value="送出">
+            </form>
+          </div>
+          <!-- 其餘功能區 -->
+          <div class="mt-5 d-flex justify-content-between">
+            <p class="ms-2"><a class="text-decoration-none text-success focus-ring" href="#">忘記密碼</a></p>
+            <p class="me-2">還沒有帳號嗎<i class="ms-3 bi bi-arrow-right-circle-fill"></i><a class="text-success text-decoration-none ms-3 focus-ring" target="_blank" href="#">註冊</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+</body>
+</html>

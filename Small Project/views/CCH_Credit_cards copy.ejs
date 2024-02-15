@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCH Credit Cards</title>
+  <link rel="stylesheet" href="/css/CCH.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <script src="/js/bootstrap.bundle.js"></script>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/CCH.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/animate.css">
+</head>
+
+<body style="background-color: rgb(235, 231, 231);">
+  <!-- 導覽列內容區 -->
+  <nav class="navbar navbar-expand-lg bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><abbr title="CCH 首頁"><img style="width: 200px; " src="/image/Credit Card Hub Navbar-brand.png"
+          alt="Credit Card Hub"></abbr></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" aria-current="page" href="/introduction.html"
+              id="creditIntroLink">信用卡簡介</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" href="/Condition_search" id="conditionSearchLink">條件查詢</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle text-white fw-bolder" href="#" id="relatedLinkLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              相關連結
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Official_banks.html">各家銀行官網</a></li>
+              <li><a class="dropdown-item" href="/Credit_cards">信用卡總覽</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bolder" href="/Opinion_feedback.html" id="feedbackLink">意見回饋</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        <div class="me-4 mt-3">
+          <p class="fs-5 ">你好 <span class="text-white lh-1"> <%=emailName%></p>
+        </div>
+        <div class="d-flex mt-2">
+        <%if (emailName == "Guest") {%>
+          <form method="get" action="/login.html">
+            <input class="btn btn-outline-success" type="submit" value="登入"></input>
+          </form>
+        <%} else {%>
+          <div>
+            <a href="/membershipCenter.html"><abbr title="會員中心"><i style="font-size: 2rem;" class="bi bi-person-circle me-3"></i></abbr></a>
+          </div>
+          <form method="get" action="/logout.html">
+            <input class="btn btn-outline-success" type="submit" value="登出"></input>
+          </form>
+        <% } %>
+          
+        </div>
+      </div>    
+    </div>
+  </nav>
+  <main class="container-fluid">
+    <section class="row">
+      <!-- 信用卡目錄區 -->
+      <div style="background-color: #004ea2;" class="col-2" id="creditCardsIndex">
+        <ul class="lh-lg">
+          <li class="text-white" style="list-style: none; font-size: 40px; font-weight: 700;"><i class="bi bi-journal-bookmark me-3"></i>目錄
+          </li>
+          <hr>
+          <li><a onclick="showUbearCardContent()" class="fs-6 text-decoration-none text-white icon-link icon-link-hover" href="#"><i
+                class="bi bi-credit-card lh-1"></i>玉山Ubear卡<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showHappinessMCardContent()" class="fs-6 text-decoration-none text-white icon-link icon-link-hover " href="#"><i
+                class="bi bi-credit-card lh-1"></i>聯邦幸福M卡<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showOpenPossibleCardContent()" style="font-size: smaller;" class="text-decoration-none text-white icon-link icon-link-hover" href="#"><i
+                class="bi bi-credit-card lh-1"></i>富邦Open Possible卡<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showJCardContent()" class="fs-6 text-decoration-none text-white icon-link icon-link-hover" href="#"><i
+                class="bi bi-credit-card lh-1"></i>富邦J卡<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+          <li><a onclick="showlinePayCardContent( )" class="fs-6 text-decoration-none text-white icon-link icon-link-hover" href="#"><i
+                class="bi bi-credit-card lh-1"></i>中信Line Pay卡<i style="line-height: 1rem;"
+                class="bi bi-arrow-bar-right"></i></a></li>
+        </ul>
+      </div>
+      <!-- ubear卡內容區 -->
+      <div class="col-8" id="ubearCardContent">
+        <div class="mt-5" id="cardIntro">
+          <div class="d-flex flex-column align-items-center w-100 ">
+            <figure><img style="width: 25vw;height: 30vh;" class="cardsMainPic img-thumbnail" src="/image/u-bear card pic.png" alt=""></figure>
+            <figcaption class="fs-3 fw-bolder">玉山Ubear卡</figcaption>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showubearCardFeature()" type="button">卡片特色</button>
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showubearExclusiveOffers()" type="button">專屬優惠</button>
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showubearAdditionalBenefits()" type="button">附加權益</button>
+          </div>
+          <div>
+            <!-- ubear卡片特色內容區 -->
+            <div id="ubearCardFeature" class="">
+              <div class="mb-5 mx-3">
+                <div class="row mt-5">
+                  <div class="col-3 d-flex align-items-center">
+                    <h4>三款卡片設計 :</h4>
+                  </div>
+                  <div class="col-9 d-flex">
+                    <div class="me-1">
+                      <figcaption class="text-center">粉 (具愛金卡功能)</figcaption>
+                      <figure><img src="/image/ubear Card Pink.png" alt=""></figure>
+                    </div>
+                    <div class="me-1">
+                      <figcaption class="text-center">黃 (具悠遊卡功能)</figcaption>
+                      <figure><img src="/image/ubear Card yellow.png" alt=""></figure>
+                    </div>  
+                    <div class="me-1">
+                      <figcaption class="text-center">黑</figcaption>
+                      <figure><img src="/image/ubear Card black.png" alt=""></figure>
+                    </div> 
+                  </div>
+                  <p class="d-flex justify-content-center text-muted">※ 同一持卡人以申請一張正卡為限，重複申請將不予核發。</p>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-3 d-flex align-items-center">
+                    <h4>熊一般基本回饋:</h4>
+                  </div>
+                  <div class="col-9">
+                    <p>活動期間：2023/3/1~2024/2/29</p>
+                    <ul>
+                      <li>國內外一般消費享<span class="text-danger">1%現金回饋</span></li>
+                      <li class="text-success">回饋無上限，於當期帳單直接折抵</li>
+                    </ul>
+                    <p class="text-muted">※ 指定娛樂/影音平台不列入回饋計算</p>
+                    <div class="accordion">
+                      <div class="accordion-item">
+                        <h4 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ubearFeatureAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                        </h4>
+                      </div>
+                      <div class="accordion-collapse collapse bg-white" id="ubearFeatureAccordionOne">
+                          <div class="accordion-body">
+                            <ul>
+                              <li>本優惠需持玉山Ｕ Bear信用卡刷卡之消費才可享有。</li>
+                              <li>國內外一般消費1%現金回饋，每期回饋金額無上限，不另累計紅利點數；分期交易以該筆總金額計算回饋。</li>
+                              <li>指定娛樂/影音平台不列入一般消費回饋計算。</li>
+                              <li>當期帳單直接折抵，每期現金回饋採四捨五入法計算至新臺幣元，限按沖銷順序直接折抵當期新增一般消費款且不可申請退回，亦不可兌換現金，正、附卡合併依歸戶回饋。</li>
+                              <li>回饋金額以實際刷卡金額為主，交易取消時，符合活動回饋資格之交易將列入負項計算收取。</li>
+                              <li>關帳時，正卡歸戶下若無任何有效卡，將取消當期回饋。</li>
+                              <li>活動門檻限新增一般消費。一般消費不包含之項目詳見官網<a target="_blank" href="https://event.esunbank.com.tw/credit/notice/index.html">公告。</a></li>
+                              <li>若無註明則均以新臺幣計算。</li>
+                              <li>玉山銀行保留活動修改、變更及終止之權利。</li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-3 d-flex align-items-center">
+                    <h4>熊熊買下去:</h4>
+                  </div>
+                  <div class="col-9">
+                    <h5 class="text-success">日常網購享3%回饋</h5>
+                    <p>活動期間：2023/3/1~2024/2/29</p>
+                    <ul>
+                      <li>指定網路消費最高享3%現金回饋 (含基本回饋1%+網購加碼2%)</li>
+                      <li class="text-muted">加碼2%需綁定e化帳單，每期回饋上限200元，於當期帳單直接折抵</li>
+                    </ul>
+                    <p>※ 指定網路消費包含國內外線上消費 (例如：PChome線上購物、momo購物網、蝦皮、淘寶、線上訂房、高鐵線上購票等)、行動支付 (例如：LINE Pay、街口支付等) 與手機APP綁定信用卡付款，詳細認列說明請見<a target="_blank" href="https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/u-bear#4">用卡須知</a></p>
+                    <div class="accordion">
+                      <div class="accordion-item">
+                        <h4 class="accordion-header">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ubearFeatureAccordionTwo"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                        </h4>
+                      </div>
+                      <div class="accordion-collapse collapse bg-white" id="ubearFeatureAccordionTwo">
+                        <div class="accordion-body">
+                          <ul>
+                            <li>指定網路消費最高3%現金回饋，包含基本回饋1%及指定網路消費加碼2%。</li>
+                            <li>本優惠需持玉山Ｕ Bear信用卡刷指定網路消費才可享有。</li>
+                            <li>指定網路消費加碼2%需綁定 <span class="text-danger">e化帳單</span> (Email電子帳單/簡訊帳單) 才享回饋。<a target="_blank" href="https://www.esunbank.com/zh-tw/personal/credit-card/tools/apply/electronicbill?_gl=1*15a51pj*_ga*MTQ0ODY2ODgzNC4xNjk4MjIyNDI0*_ga_56KQZGV7P0*MTY5OTQ5MDYyMy4xMy4wLjE2OTk0OTA2MjMuNjAuMC4w&_ga=2.22019256.209026009.1699490624-1448668834.1698222424">※ 立即申辦e化帳單</a></li>
+                            <li>指定網路消費加碼2%回饋採正附卡合併計算，每期回饋上限200元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。</li>
+                            <li> <span class="text-danger">分期交易以該筆總金額計算回饋。</span></li>
+                            <li>指定網路消費係以收單商店於刷卡授權時提供的交易型態資訊作為判定依據，回饋之認定以本行系統判定為網路一般消費為準，含國內外線上消費與手機APP綁定信用卡付款。若因商家交易型態為線下一般交易恕不回饋。 <a target="_blank" href="https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/u-bear#4">※ 詳細認列說明請見用卡須知</a></li>
+                            <li> <span class="text-danger">保費</span >、 <span class="text-danger">超商</span> (包含綁定玉山Wallet之超商消費) 、 <span class="text-danger">小額支付平台</span>及<span class="text-danger">指定影音娛樂平台</span> (Disney+、Nintendo、PlayStation、Netflix、Spotify) 之線上交易，不列入指定網路消費回饋計算。</li>
+                            <li>若綁定玉山Ｕ Bear信用卡於Apple Pay、Google Pay及Samsung Pay至實體門市交易，視為實體卡交易，不列入指定網路消費回饋計算。</li>
+                            <li>當期帳單直接折抵，每期現金回饋採四捨五入法計算至新臺幣元，限按沖銷順序直接折抵當期新增一般消費款且不可申請退回，亦不可兌換現金，正、附卡合併依歸戶回饋。</li>
+                            <li>回饋金額以實際刷卡金額為主，交易取消時，符合本活動認列之通路交易將全數列入負項計算，並追回回饋金額。如對於回饋金扣除有疑問者，請致電本行客服，將不另行通知。</li>
+                            <li>關帳時，正卡歸戶下若無任何有效卡，將取消當期回饋。</li>
+                            <li>一般消費不包含之項目詳見官網 <a target="_blank" href="https://event.esunbank.com.tw/credit/notice/index.html?_ga=2.20756539.209026009.1699490624-1448668834.1698222424&_gl=1*2ns9ea*_ga*MTQ0ODY2ODgzNC4xNjk4MjIyNDI0*_ga_56KQZGV7P0*MTY5OTQ5MDYyMy4xMy4xLjE2OTk0OTE2NjkuNTQuMC4w">公告</a>。</li>
+                            <li>若無註明則均以新臺幣計算。</li>
+                            <li>玉山銀行保留活動修改、變更及終止之權利。</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div> 
+            </div>
+            <!-- ubear專屬優惠內容區 -->
+            <div id="ubearExclusiveOffers" class="d-none" >
+              <div class="row mt-5 container-fluid">
+                <div class="col-3 fs-3 d-flex align-items-center">
+                  <h4>LINE Pay最高8%回饋</h4>
+                </div>
+                <div class="col-9">
+                  <h5 class="text-success">首次綁定LINE Pay享加碼回饋</h5>
+                  <p>活動期間：2023/10/1~2023/12/31</p>
+                  <p>使用玉山Ｕ Bear信用卡 <span class="text-danger">首次綁定</span>LINE Pay消費，最高享 <span class="text-danger">8%現金回饋</span></p>
+                  <ul>
+                    <li>8%現金回饋計算：網購3%+新卡網購加碼2%+LINE Pay加碼3%</li>
+                    <li>LINE Pay加碼3%現金回饋每月回饋上限100元</li>
+                  </ul>
+                  <!-- 專屬優惠摺疊內容區-1 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ubearExclusiveAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="ubearExclusiveAccordionOne">
+                      <ul>
+                        <li>首次綁定定義：須於活動期間內首次綁定玉山ＵBear信用卡消費，2023/10/1前曾以玉山ＵBear信用卡綁定LINE Pay消費不符合首次綁定之資格。</li>
+                        <li>本優惠需持玉山ＵBear信用卡首次綁定LINE Pay支付之消費始可享有。</li>
+                        <li>本活動8%現金回饋包含原一般消費1%現金回饋、原網購消費加碼2%現金回饋、新卡網購加碼2%現金回饋及首次綁定LINE Pay消費加碼3%現金回饋。</li>
+                        <li>LINE Pay加碼3%現金回饋每月回饋上限100元，每月回饋計算區間以日曆月為準，正附卡合併計算，回饋予正卡人。</li>
+                        <li>LINE Pay消費認定以商家帶入之帳單交易 (特店) 名稱為判定回饋標準，名稱需為「連加*」或「LINEPAY*」開頭。</li>
+                        <li>符合資格者，每月回饋金將分別於次月15日起依顧客帳單關帳時間陸續回饋至信用卡帳單，新臺幣回饋金恕無法兌換現金、替換為其他物品或任何其他費用。參加人亦不得要求 將優惠轉讓予其他人。</li>
+                        <li>回饋金額以實際刷卡金額為主，交易取消時，符合活動回饋資格之交易將列入負項計算收取，關帳時，正卡歸戶下若無任何有效卡，將取消回饋。</li>
+                        <li>若無註明則均以新臺幣計算。</li>
+                        <li>玉山銀行保留活動修改、變更及終止之權利。</li>
+                    </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ubear附加權益內容區 -->
+            <div id="ubearAdditionalBenefits" class="d-none">
+              <div class="mt-5">
+                <div>
+                  <h4 style="text-align: center;" class="text-success">附加權益</h4>
+                </div>
+                <div class="d-flex flex-row">
+                  <!-- 旅遊平安險內容區 -->
+                  <div class="card ms-3" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 style="text-align: center;" class="card-title text-success">旅遊平安險</h5>
+                      <p>簽付持卡本人、配偶及未滿25足歲之未婚子女旅途中全額公共運輸工具費用，或參加旅行團時
+                        80%以上之團費 (需含全額公共運輸工具費用)，即可享有3,000萬元公共運輸工具旅平險、
+                        1,000萬元海外全程意外險及旅遊不便險服務。</p>
+                    </div>
+                    <div>
+                      <p><a class="text-success text-decoration-none icon-link icon-link-hover lh-1" target="_blank" href="https://www.esunbank.com/zh-tw/personal/credit-card/benefit/travel-insurance">了解更多<i class="bi bi-arrow-bar-right"></i></a></p>
+                    </div>
+                  </div>
+                  <!-- 機場外圍停車內容區 -->
+                  <div class="card ms-3" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 style="text-align: center;" class="card-title text-success">機場外圍停車</h5>
+                      <p>使用機場外圍出國停車優惠服務往前溯及90天內以指定卡別支付全額國際機票單筆達20,000元以上
+                        或旅行社國外團費 80%以上且單筆20,000元以上，可至指定特約停車場使用免費停車優惠，每次最多
+                        7天，全年上限次數4次。</p>
+                    </div>
+                    <div>
+                      <p><a class="text-success text-decoration-none icon-link icon-link-hover lh-1" target="_blank" href="https://www.esunbank.com/zh-tw/personal/credit-card/benefit/airport-parking?tabid=tab04">了解更多<i class="bi bi-arrow-bar-right"></i></a></p>
+                    </div>
+                  </div>
+                  <!-- 汽車道路救援內容區 -->
+                  <div class="card ms-3" style="width: 16rem;">
+                    <div class="card-body">
+                      <h5 style="text-align: center;" class="card-title text-success">汽車道路救援</h5>
+                      <div>
+                        <ul>
+                          <li style="list-style-type: none;">首年：無登錄條件。</li>
+                          <li style="list-style-type: none;">次年起條件：自登錄日起歸戶逐年刷卡新增一般消費達新臺幣10萬元。</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div>
+                      <p><a class="text-success text-decoration-none icon-link icon-link-hover lh-1" target="_blank" href="https://www.esunbank.com/zh-tw/personal/credit-card/benefit/road-aid?tabid=tab04">了解更多<i class="bi bi-arrow-bar-right"></i></a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <!-- 聯邦幸福M卡內容區 -->
+      <div class="d-none col-8" id="happinessMCardContent">
+        <div class="mt-5"  id="cardIntro">
+          <div class="d-flex flex-column align-items-center w-100 ">
+            <figure><img style="width: 25vw;height: 30vh;" class="cardsMainPic img-thumbnail" src="/image/聯邦幸福M card.jpg" alt=""></figure>
+            <figcaption class="fs-3 fw-bolder">聯邦幸福M卡</figcaption>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showhappinessCardFeature()" type="button">卡片特色</button>
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showhappinessExclusiveOffers()" type="button">專屬優惠</button>
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showhappinessAdditionalBenefits()" type="button">權益活動</button>
+          </div>
+          <div>
+            <!-- 幸福M卡卡片特色內容區 -->
+            <div id="happinessCardFeature" class="">
+              <div class="container-fluid row">
+                <div class="col-12">
+                  <div class="accordion mt-5">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#happinessFeatureAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>申辦電子化帳單享</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse show bg-white" id="happinessFeatureAccordionOne">
+                      <div class="accordion-body">
+                        <ul>
+                          <li><strong>航空 / 訂房 / 旅行社 / 交通 <span class="text-danger">6%</span></strong></li>
+                          <li class="mt-3">
+                            活動期間：112/11/1-113/12/31 <br>
+                            交通：航空/台鐵/指定計程車/指定客運/指定租車 <br>
+                            旅遊：大型旅行社/指定訂房網及旅遊平台/國內飯店 <br>
+                            ※未申辦電子化帳單享國內指定交通/旅遊0.5%、國外指定交通/旅遊1.5% <br>
+                            ※指定交通/旅遊 <span class="text-danger">月上限300元</span> <br>
+                          </li>
+                          <li class="mt-3">
+                            <strong>一般消費回饋無上限</strong><br>
+                            活動期間：112/11/1-113/12/31 <br>
+                            國外 <span class="text-danger">3%</span><u>指定交通/旅遊依其專屬活動回饋計算</u>
+                            國內 <span class="text-danger">1%</span><u>國內保險及指定交通/旅遊依其專屬活動回饋計算</u>
+                            ※未申辦電子化帳單享國內0.5%、國外1.5%
+                          </li>
+                          <li class="mt-3">
+                            <strong>保費</strong> <br>
+                            活動期間：112/11/1-113/12/31 <br>
+                            • &nbsp;國內保險<span class="text-danger">1.2%</span> <br>
+                            ※未申辦電子化帳單享國內保險0.5% <br>
+                            ※活動期間之『保險類別交易』<span class="text-danger">回饋上限1萬元(含)</span>，若達回饋上限，則不再享任何回饋。 <br>
+                            • &nbsp;保險分期零利率：凡自登錄分期活動當日起，所有入帳之保險類交易皆可選擇分三、六、十二期零利率。 <br>
+                            <a href="https://card.ubot.com.tw/ECARD/ACTIVITY/2023insuranceM/index.htm" target="_blank">
+                              <span style="color: #004ea2"><u>活動詳情</u></span>
+                            </a>
+                          </li>
+                          <li class="mt-3">
+                            <strong>自動加值</strong> <br>
+                            活動期間：112/11/1-113/12/31 <br>
+                            申辦電子化帳單享全通路自動加值每筆5元刷卡金回饋；活動僅適用實體信用卡交易。 <br>
+                            ※自動加值 <span class="text-danger">月上限100元</span> <br>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 幸福M卡專屬優惠內容區 -->
+            <div id="happinessExclusiveOffers" class="d-none" >
+              <div class="mt-5">
+                  <h4 style="text-align: center;color: rgb(219, 161, 219);">通路優惠</h4>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-secondary border-info rounded-pill me-3" onclick="showHappinessOffersspecialty()">精選</button>
+                <button type="button" class="btn btn-outline-secondary border-info rounded-pill me-3" onclick="showHappinessOffersTravel()">旅遊</button>
+                <button type="button" class="btn btn-outline-secondary border-info rounded-pill me-3" onclick="showHappinessOffersTraffic()">交通</button>
+                <button type="button" class="btn btn-outline-secondary border-info rounded-pill me-3" onclick="showHappinessOffersDining()">餐飲</button>
+              </div>
+              <div class="">
+                <div id="HappinessOffersspecialty">
+                  <img style="width: 65vw;" src="/image/exclusive_offers_pic-1.gif" alt="exclusive_offers_pic-1">
+                </div>
+                <div class="d-none" id="HappinessOffersTravel">
+                  <img style="width: 65vw;" src="/image/exclusive_offers_pic-2.gif" alt="exclusive_offers_pic-2">
+                </div>
+                <div class="d-none" id="HappinessOffersTraffic">
+                  <img style="width: 65vw;" src="/image/exclusive_offers_pic-3.gif" alt="exclusive_offers_pic-3">
+                </div>
+                <div class="d-none" id="HappinessOffersDining">
+                  <img style="width: 65vw;" src="/image/exclusive_offers_pic-4.gif" alt="exclusive_offers_pic-4">
+                </div>
+              </div>
+            </div>
+            <!-- 幸福M卡附加權益內容區 -->
+            <div id="happinessAdditionalBenefits" class="d-none">
+              <div class="container-fluid row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-3">
+                      <div><img src="/image/happiness_benefits_pic-1.png" alt="happiness_benefits_pic-1"></div>
+                      <div>
+                        <h4 style="text-align: center;color: rgb(219, 161, 219);">旅平險保障</h4>
+                        <p><a class="text-decoration-none text-dark" href="https://card.ubot.com.tw/eCard/Faq/q-16/index.htm" target="_blank">聯邦幸福M卡支付80%以上團費或全額交通工具費用，即可享有3,000萬元旅遊平安險保障及多項旅遊不便險保障。</a></p>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div><img src="/image/happiness_benefits_pic-2.png" alt="happiness_benefits_pic-2"></div>
+                      <div>
+                        <h4 style="text-align: center;color: rgb(219, 161, 219);">愛車服務</h4>
+                        <p>使用服務前達指定消費金額即享免費50公里<a class="text-dark" href="https://card.ubot.com.tw/eCard/Faq/q-14/index.htm" target="_blank"><u>道路救援服務</u></a>及<a class="text-dark" href="https://card.ubot.com.tw/eCard/Faq/q-6/index.htm" target="_blank"><u>免費機場外圍停車服務</u></a></p>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div><img src="/image/happiness_benefits_pic-3.png" alt="happiness_benefits_pic-3"></div>
+                      <div>
+                        <h4 style="text-align: center;color: rgb(219, 161, 219);">國賓電影65折起</h4>
+                        <p><a class="text-dark" href="https://card.ubot.com.tw/eCard/activity/2022ambassador/index.htm" target="_blank">於國賓影城以聯邦幸福M卡購票，享全票65折起優惠。</a></p>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div><img src="/image/happiness_benefits_pic-4.png" alt="happiness_benefits_pic-4"></div>
+                      <div>
+                        <h4 style="text-align: center;color: rgb(219, 161, 219);">國際組織優惠</h4>
+                        <p>享Mastercard鈦金商務卡<a class="text-dark" href="https://24tms.vlimo.com.tw/NewsData/ug_News_Info.aspx?BID=246&amp;ID=17" target="_blank"><u>機場接送優惠價新台幣528元起</u></a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <!-- 富邦OP卡內容區 -->
+      <div class="d-none col-8" id="OpenPossibleCardContent">
+        <div class="mt-5"  id="cardIntro">
+          <div class="d-flex flex-column align-items-center w-100 ">
+            <figure><img style="width: 11vw;height: 37vh;" class="cardsMainPic img-thumbnail" src="/image/Open Possible  Card.jpg" alt=""></figure>
+            <figcaption class="fs-3 fw-bolder">富邦Open Possible卡</figcaption>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-secondary me-1" onclick="showopenPossibleCardFeature()" type="button">卡片特色</button>
+            <button class="btn btn-outline-secondary me-1" onclick="showopenPossibleExclusiveOffers()" type="button">專屬優惠</button>
+            <button class="btn btn-outline-secondary me-1" onclick="showopenPossibleAdditionalBenefits()" type="button">附加權益</button>
+          </div>
+          <div>
+            <!-- OP卡卡片特色內容區 -->
+            <div id="openPossibleCardFeature" class="">
+              <div class="m-5">
+                <div class="mt-5">
+                  <h4 class="text-center text-info"><b>產品特色</b></h4>
+                </div>
+                <div>
+                  <h5 class="text-warning">新戶好禮大方送 最高贈1,000元</h5>
+                </div>
+                <div>
+                    <p class="text-info">活動一、新戶申辦Open Possible聯名卡享首刷禮NT$500</p>
+                    <p>活動期間：112/10/1~113/6/30</p>
+                    <p>新戶申辦Open Possible聯名卡，核卡後30天內，一般消費不限金額刷5筆或累積達NT$5,000(含)以上，享 <span class="text-info">NT$500刷卡金</span>！</p>
+                    <br>
+                    <p class="text-info">活動二、DCB電信帳單代付折抵NT$500</p>
+                    <p>活動期間：112/10/1~113/6/30</p>
+                    <p>活動資格：台灣大月租型用戶</p>
+                    <p>不限信用卡新舊戶，每期台灣大哥大電信帳單新增 <span class="text-info">代收費用達NT$250贈NT$50，連續贈10期</span>。</p>
+                    <p>※DCB電信帳單代收適用項目： Google Play、iTunes Store</p>
+                    <p>※同一身分證字號限領乙次</p>
+                    <p><a class="text-info text-decoration-none" target="_blank" href="https://dcb.com.tw/events/DCBQA/DCBQA.htm">了解更多DCB電信帳單代付</a></p>
+                  </div>
+                  <!-- OP卡片特色摺疊內容區-1 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#OPFeatureAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="OPFeatureAccordionOne">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>新戶定義： <span class="text-danger">自申辦日起前6個月，未曾持有任何一張富邦信用卡正卡者。</span></li>
+                            <li>本活動恕無法與本行其他新戶刷卡禮活動併用。</li>
+                            <li>活動一：需於112/10/1至113/6/30期間申辦卡片，且於113/7/31(含)前核卡。</li>
+                            <li>符合新戶禮資格者，本行預計於112/11（以實際系統作業時間為準）起陸續回饋至正卡持卡人信用卡帳戶上，持卡人不得要求折換現金或轉讓予他人。</li>
+                            <li>(1)本活動累積消費以「消費日」為準，消費金額依核卡後30天內實際消費淨額(扣除退貨金額)計算。正、附卡消費合併計算，分期消費於首期認列總分期金額
+                              ，每歸戶限贈送乙次。(2)新戶禮贈品寄送前，持卡人所持之Open Possible聯名卡於回饋當時需為有效卡，若有遭限制或停止使用、延遲繳款或其他違反信用卡約
+                              定條款之情事，將喪失獲贈資格。(3)持卡人若因任何理由取消刷卡交易或因簽單爭議致不符本活動獲贈資格，或持卡人以違反誠信之方式取得本活動回饋者，台北富
+                              邦銀行得取消獲贈資格，不另行通知。</li>
+                            <li>「一般消費」定義：不包含保費、台灣大哥大電信帳單電信費、自動加值儲值金、icash Pay交易(含公共事業代收、代售服務等)、基金申購及代扣、eToro等
+                              境外投資交易(含換匯、虛擬貨幣等)、預借現金(含餘額代償及各項預借現金專案)本金及利息、聯合信用卡中心小額支付平台特約商店、學雜費、公路監理資費、
+                              各項規費、各類稅款、各醫療院所費用、醫指付、電子化繳稅費平台、公務機關信用卡繳費平台、各事業單位費用(水費、電費、瓦斯費、電信費、路邊停車費)、
+                              便利商店消費(含綁定該便利商店各行動支付，如全盈+Pay及LINE PAY等)、全聯福利中心消費(含各式行動支付，如Px pay 、PxPay Plus等)、循環息、分期利息、
+                              遲延利息、違約金、及其他一切與信用卡相關之手續費，如：年費、掛失費、國外交易手續費、緊急替代卡費用、各項繳款作業平台所收取之手續費等。</li>
+                            <li>【DCB電信帳單代付折抵金】僅適用於台灣大哥大年滿12歲之月租型個人戶 (預付卡及公司戶不適用)。每個身分證字號僅可獲得乙次折抵，每期新增帳單代付費
+                              用達NT$250贈送NT$50折抵，連續贈送10期。 (折抵金額依小數點後一位四捨五入計算，回饋不足NT$1不計)。活動優惠僅限『iTunes Store電信帳單代付』或
+                              『Google Play電信帳單代付』費用，如30日內未產生費用，系統將無法進行相對應之優惠折抵，亦不重新補發優惠。消費日與優惠生效日在當期帳單週期內，將
+                              於當期扣抵，若超過，則於下期扣抵。符合資格者，查有退租、欠費、停話、欠費拆機、被銷號、聯繫不上本人等情事，則喪失折抵資格，恕不提供補發。台灣大哥
+                              大保留資格審核、活動變更或取消之權利。</li>
+                            <li>台灣大哥大及台北富邦銀行保留活動資格審核、變更及終止本活動之權利。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- OP卡專屬優惠內容區 -->
+            <div id="openPossibleExclusiveOffers" class="d-none" >
+              <div class="m-5">
+                <div>
+                  <h4 class="text-info text-center"><b>最新優惠</b></h4>
+                </div>
+                <div>
+                  <h5 class="text-warning ">淘寶雙11 限時加碼優惠</h5>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <img class="w-100" src="/image/OP card exclusive-1.jpg" alt="OP card exclusive-1">
+                </div>
+                <div>
+                  <p>活動期間以Open Possible聯名卡於淘寶消費享以下優惠：</p>
+                  <p><b>★雙11天天領</b></p>
+                  <p>活動期間：112/10/24 20:00~112/11/11 23:59</p>
+                  <ul>
+                    <li>活動一：天天Visa Day，領免3%手續費券</li>
+                    <li>活動二：天天領券，滿NT$2,000折NT$111</li>
+                  </ul>
+                  <!-- OP專屬優惠摺疊內容區-1 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#OPExclusiveAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="OPExclusiveAccordionOne">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>活動一：領券制，將於每日晚上24:00限量發放，先領先得（每日限領一張），不限消費金額即可使用，折抵上限NT$50，於112/11/11 23:59前用畢，活動不疊加。</li>
+                            <li>活動二：領券制，將於每日晚上20:00限量發放，先領先得（每日限領一張），於112/11/11 23:59前用畢，活動不疊加。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p><b>★第一波結帳加碼</b></p>
+                  <p>活動期間：112/10/31 20:00~112/11/3 23:59</p>
+                  <ul>
+                    <li>活動一：結帳不限門檻，立折8折</li>
+                    <li>活動二：領券滿NT$2,000 折 NT$1,111</li>
+                  </ul>
+                  <!-- OP專屬優惠摺疊內容區-2 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#OPExclusiveAccordionTwo"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="OPExclusiveAccordionTwo">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>活動一：結帳制，結帳綁定Open Possible聯名卡即可折抵，活動於每日晚間24:00開始（10/31為晚間20:00開始），先結先得(限單筆消費)，折抵上限NT$200，活動不疊加。</li>
+                            <li>活動二：領券制，將於每日晚上20:00限量發放，先領先得（每日限領一張），於112/11/11 23:59前用畢，活動不疊加。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p><b>★第二波結帳加碼</b></p>
+                  <p>活動期間：112/11/10 20:00~112/11/11 23:59</p>
+                  <ul>
+                    <li>活動一：結帳不限門檻，立折1折</li>
+                    <li>活動二：領券滿NT$2,000 折 NT$222</li>
+                  </ul>
+                  <!-- OP專屬優惠摺疊內容區-3 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#OPExclusiveAccordionThree"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="OPExclusiveAccordionThree">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>活動一：結帳制，結帳綁定Open Possible聯名卡即可折抵，112年11月10日20:00開始，先結先得(限單筆消費)，折抵上限NT$1,111，活動不疊加。</li>
+                            <li>活動二：領券制，將於每日晚上20:00限量發放，先領先得（每日限領一張），於112/11/11 23:59前用畢，活動不疊加。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p><b>★Visa獨家好友分享</b></p>
+                  <p>活動期間：112/10/30~112/11/11 23:59</p>
+                  <ul>
+                    <li>新客：原權益外，現得Visa NT$200 折價券</li>
+                    <li>舊客：每推薦一名，得Visa NT$200 折價券</li>
+                  </ul>
+                  <!-- OP專屬優惠摺疊內容區-4 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#OPExclusiveAccordionFour"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="OPExclusiveAccordionFour">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>新客活動：好友推薦後領券，消費滿NT$1,000折NT$200，於112/11/11 23:59前用畢，每人限領一次。</li>
+                            <li>舊客活動：邀請好友後由系統發放．消費滿NT$2,000折NT$200，一人限推薦五名，於113/3/31 23:59前用畢。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- OP卡附加權益內容區 -->
+            <div id="openPossibleAdditionalBenefits" class="d-none">
+              <div class="m-5">
+                <div>
+                  <h4 class="text-info text-center"><b>權益服務</b></h4>
+                </div>
+                <div>
+                  <h5><b>免費機場外圍停車</b></h5>
+                </div>
+                <div>
+                  <p>出國享國際機場外圍免費停車優惠。</p>
+                  <p>優惠期間至112/12/31止，了解更多<a class="text-decoration-none"  target="_blank" 
+                    href="https://www.fubon.com/banking/personal/credit_card/airport_parking/airport_parking.htm">相關使用規範及限制。</a></p>
+                </div>
+                <div>
+                  <h5><b>免費道路救援服務</b></h5>
+                </div>
+                <div>
+                  <p>事先登錄且生效後即可享全年無休，每次最高50公里免費道路救援服務。
+                    優惠期間至112/12/31止，了解更多 <a class="text-decoration-none" target="_blank" 
+                    href="https://www.fubon.com/banking/personal/credit_card/roadside_help/roadside_help.htm"></a>相關使用規範及限制。</p>
+                </div>
+                <div>
+                  <h5>高額旅遊平安保險</h5>
+                </div>
+                <div>
+                  <p>本人、承保事故發生時之配偶及未滿25足歲之未婚子女享旅行平安險、旅遊不便險等完善保障。
+                    優惠期間至112/12/31止，了解更多 <a class="text-decoration-none" target="_blank" 
+                    href="https://www.fubon.com/banking/personal/credit_card/trip_insurance/trip_insurance.htm"></a>相關使用規範及限制。</p>
+                </div>
+                <div>
+                  <h5><b>國內外禮遇優惠</b></h5>
+                </div>
+                <div>
+                  <p>更多國內外禮遇優惠，請詳見。<a class="text-decoration-none" target="_blank" 
+                    href="https://creditcard.taipeifubon.com.tw/promo/hot/index.jsp">富邦卡好康</a>或
+                    <a class="text-decoration-none" target="_blank" href="https://www.visa.com.tw/">VISA官網</a></p>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <!-- J卡內容區 -->
+      <div class="d-none col-8" id="JCardContent">
+        <div class="mt-5"  id="cardIntro">
+          <div class="d-flex flex-column align-items-center w-100 ">
+            <figure><img style="width: 20vw;height: 35vh;" class="cardsMainPic img-thumbnail" src="/image/J card.gif" alt=""></figure>
+            <figcaption class="fs-3 fw-bolder">富邦J卡</figcaption>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showjCardFeature()" type="button">卡片特色</button>
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showjExclusiveOffers()" type="button">專屬優惠</button>
+            <button class="btn btn-outline-secondary me-1 focus-ring" onclick="showjAdditionalBenefits()" type="button">附加權益</button>
+          </div>
+          <div>
+            <!-- J卡卡片特色內容區 -->
+            <div id="jCardFeature" class="">
+              <div class="row mx-5 mt-5">
+                <div class="col">
+                  <div class="">
+                    <h4 class="text-warning text-center">★(Q4登錄規則調整)日韓旅遊刷J卡 最高6%回饋</h4>
+                    <p class="text-center">活動期間：112/7/1-112/12/31</p>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <img src="/image/J card feature-1.png" alt="J card feature-1">
+                  </div>
+                  <div>
+                    <h5 class="text-center">【第四季登錄時間調整說明】</h5>
+                    <p>親愛的卡友您好，因日韓旅遊實體加碼3%活動迴響熱烈，為使您更加方便參與此檔活動，第四季加碼登錄時間將調整為
+                      月登錄制(消費日區間及回饋時間不變)，您僅需登錄一次即符合當季活動資格，不需每月重覆登錄(ex.11月登錄成功，
+                      10月~12月日韓實體消費皆符合活動資格)各月登錄人數上限及登錄時間請詳閱下方活動注意事項說明。</p>
+                  </div>
+                  <br>
+                  <div class="text-center">
+                    <p><b>加碼3%：</b></p>
+                    <p>‧採每季回饋：第三季112/7/1~112/9/30之消費且於112/10/15前請款入帳之交易，預計於112/11月底前回饋；
+                      第四季112/10/1~112/12/31之消費且於113/1/15前請款入帳之交易，預計於113/2月底前回饋。</p><br>
+                    <p><b>登錄時間：</b></p>
+                    <p>第三季：112/9/20 16:00起至112/9/30 23:59</p><br>
+                    <p><b>第四季：</b></p>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <ul>
+                      <li>10月：112/10/20 16:00起至112/10/31 23:59(限量6,000名)</li>
+                      <li>11月：112/11/20 16:00起至112/11/30 23:59(限量6,000名)</li>
+                      <li>12月：112/12/20 16:00起至112/12/31 23:59(限量8,000名)</li>
+                    </ul>
+                  </div>
+                  <p class="text-center">額滿為止，不另行通知。詳注意事項。</p>
+                </div>
+              </div>
+            </div>
+            <!-- J卡專屬優惠內容區 -->
+            <div id="jExclusiveOffers" class="d-none" >
+              <!-- 第一列內容 -->
+              <div class="row mx-5 mt-5">
+                <div class="col">
+                  <h4 class="text-info text-center">懂日韓</h4>
+                  <div>
+                    <h5 class="text-warning fw-bolder">日本三大便利商店最高10%回饋</h5>
+                  </div>
+                  <div class="">
+                    <img class="w-100" src="/image/J card exclusive-1.jpg" alt="J card exclusive-1">
+                  </div>
+                  <div>
+                    <p>活動期間:112/7/1-112/12/31</p>
+                    <p>活動內容:於日本三大便利商店刷J卡，享最高<b class="text-info">10%回饋</b>。</p>
+                    <p>※三大便利商店：7-11、LAWSON、FAMILY MART</p>
+                    <p>※10%回饋=日韓旅遊最高6%+本活動加碼4%(加碼上限每季200元/戶)</p>
+                    <p>※活動需登錄，每季限量5,000名</p>
+                  </div>
+                  <!-- 專屬優惠摺疊內容區-1 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#JExclusiveAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="JExclusiveAccordionOne">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>本活動限以富邦J卡(含J Cash、J Points、JU卡)於日本當地實體店鋪(限獨立街邊店，不含百貨、車站及賣場內店家)刷卡消費，並於活動期間完成交易及成功登錄者始獲回饋資格。</li>
+                            <li>本活動須以正卡持卡人資料登錄始符合回饋活動資格，每季每戶加碼上限200元，每季限量5,000名，額滿為止，不另行通知。額滿後恕無法補登及享有回饋資格，登錄未成功者亦同，登錄結果以本行系統顯示為準。
+                              <ol>
+                                <li>登錄時間：第三季：112/9/22 16:00起至112/9/30 23:59止、第四季：112/12/22 16:00起至112/12/31 23:59止。</li>
+                                <li>
+                                  <p>登錄辦法：</p>
+                                  <p>*網路登錄：於台北富邦銀行之【網路銀行】或是下載【台北富邦行動銀行APP】，註冊/登錄信用卡網路會員後，進入【信用卡活動登錄/查詢】專區勾選活動即可。</p>
+                                  <p>*語音登錄：撥打(02)8751-1313按777，活動代碼第三季輸入「0903」、第四季輸入「1203」。</p>
+                                </li>
+                              </ol>
+                            </li>
+                            <li>活動加碼部分採每季以刷卡金回饋，消費期間（以台灣時間為準）：112/7/1 00:00至112/9/30 23:59止之第三季消費且於112/10/15 23:59前請款入帳之交易，預計於112/11月底前回饋；112/10/1 00:00至112/12/31 23:59止之第四季消費且於113/1/15 23:59前請款入帳之交易，預計於113/2月底前回饋，回饋之刷卡金將入至正卡持卡人信用卡帳上，持卡人不得要求折換現金或轉讓予他人。</li>
+                            <li>正、附卡消費合併計算，活動以「消費日」為準。消費金額之計算以實際授權金額計算，若付款失敗、取消、退貨，該筆交易將不列入活動資格。</li>
+                            <li>被回饋客戶所持之富邦信用卡於回饋當時需為有效卡，若有遭限制或停止使用、延遲繳款或其他違反信用卡約定條款之情事，將喪失本活動資格。</li>
+                            <li>持卡人若因任何理由取消刷卡交易或因簽單爭議致不符本活動回饋資格，或持卡人以違反誠信之方式取得本活動回饋者，本行得逕行取消回饋，不另行通知。</li>
+                            <li>以上活動相關注意事項以台北富邦銀行實際作業為準，台北富邦銀行保留隨時修改、變更、取消本活動及對本活動所有事宜最終解釋及決定之權利。其他未盡事宜悉依台北富邦銀行相關作業辦法辦理。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- J卡附加權益內容區 -->
+            <div id="jAdditionalBenefits" class="d-none">
+              <!-- 第一列內容 -->
+              <div class="row mx-5 mt-5">
+                <div class="col">
+                  <div>
+                  <h4 class="text-info text-center mt-3">權益服務</h4>
+                  <h5><b>日本和夏威夷機場貴賓室服務:</b></h5>
+                  <p>活動時間：112/4/1至113/3/31
+                    持富邦J卡和當日登機證或機票，即可免費使用日本和夏威夷機場指定貴賓室，活動期間最多可免費使用 6 次，詳見 <a class="text-info text-decoration-none" target="_blank" href="https://www.tw.jcb/zh-tw/consumers/platinum/airport-lounge/">JCB官網</a>公告</p>
+                  </div>
+                  <div>
+                    <img class="w-100" src="/image/J card benefits-1.png" alt="J card benefits-1">
+                  </div>
+                  <!-- 附加權益摺疊內容區-1 -->
+                  <div class="accordion">
+                    <div class="accordion-item">
+                      <h4 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#JBenefitsAccordionOne"><i class="bi bi-dash-square-fill me-3"></i>注意事項</button>
+                      </h4>
+                    </div>
+                    <div class="accordion-collapse collapse bg-white" id="JBenefitsAccordionOne">
+                        <div class="accordion-body">
+                          <ol>
+                            <li>使用時，請務必出示有效之富邦J信用卡和當天的登機證或機票（如於入境後使用機場貴賓室仍請出示登機證存根）並主動告知使用本服務。</li>
+                            <li>本活動優惠僅提供富邦J信用卡之正、附卡卡友本人使用(限一卡優惠一人)，如攜帶未持有富邦J信用卡的同行者入場，將依各貴賓室收費標準計價，請參閱各貴賓室網站公告。</li>
+                            <li>請出示本人之實體富邦J信用卡方可使用機場貴賓室服務，若僅以手機或其他行動裝置等之螢幕出示富邦J信用卡畫面，恕不提供本服務。</li>
+                            <li>出發地及目的地之機場貴賓室限各使用乙次。（部分機場貴賓室位於安檢後或審查後區域，且入境後可能無法使用，敬請留意。</li>
+                            <li>機場貴賓室與營業時間詳 <a class="text-info text-decoration-none" href="https://www.tw.jcb/zh-tw/consumers/platinum/airport-lounge/">網頁查詢</a>。</li>
+                            <li>本行與國際組織JCB保留修改、變更、取消本活動之權利。</li>
+                          </ol>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 第二列內容 -->
+              <div class="row mx-5 mt-3">
+                <div class="col">
+                  <div>
+                    <h5><b>高額旅遊平安保險:</b></h5>
+                    <p>本人、承保事故發生時之配偶及未滿25足歲之未婚子女享旅行平安險、旅遊不便險等完善保障，優惠期間至
+                      112/12/31止，前往了解更多 <a target="_blank" class="text-info text-decoration-none" 
+                      href="https://www.fubon.com/banking/personal/credit_card/trip_insurance/trip_insurance.htm">相關使用規範及限制</a>。</p>
+                  </div>
+                  <div>
+                    <h5><b>免費機場外圍停車:</b></h5>
+                    <p>於使用服務前90天內，使用J卡(不含虛擬卡)刷付當次機票(含國內)全額或旅行社團費80%且單筆達NT$6,000者，且需信用卡為正常狀態下，方
+                      可免費使用乙次國際機場外圍免費停車優惠，優惠期間至112/12/31止，前往了解更多 <a target="_blank" class="text-info text-decoration-none" 
+                      href="https://www.fubon.com/banking/personal/credit_card/airport_parking/airport_parking.htm">相關使用規範及限制</a>。</p>
+                  </div>
+                  <div>
+                    <h5><b>國際機場接送優惠:</b></h5>
+                    <p>刷J卡購買國際航線機票或支付國外旅遊團費金額</p>
+                    <ol>
+                      <li>單筆達30,000元~59,999元且付款成功者，活動期間內可享「指定國際機場接送去程或回程1次免費」之優惠。</li>
+                      <li>單筆達60,000元(含）以上且付款成功者，活動期間內可享「指定國際機場接送去回程各1之免費優惠服務」。</li>
+                    </ol>
+                    <p>本活動須至 <a target="_blank" class="text-info text-decoration-none" href="https://www.callcar.com.tw/Project096">
+                      機場接送專屬網站預定</a>，每月服務總計上限1,000趟次，依持卡人預約先後順序，預約額滿即截止。每卡限預約乙次、依上述刷卡類別限制之
+                      所有消費符合上述1、2門檻僅可擇一參加、且不可重複預約，優惠期間至112/12/31止，本服務由JCB國際組織提供，活動詳情及限制請依 
+                      <a target="_blank" class="text-info text-decoration-none" href="https://www.tw.jcb/zh-tw/index.html">國際組織活動公告</a>為準。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <!-- Line Pay卡內容區 -->
+      <div class="d-none col-8" id="linePayCardContent">
+        <div class="mt-5"  id="cardIntro">
+          <div class="d-flex flex-column align-items-center w-100 ">
+            <figure><img style="width: 25vw;height: 30vh;"  class="cardsMainPic img-thumbnail" src="/image/Line Pay Card.jpg" alt=""></figure>
+            <figcaption class="fs-3 fw-bolder">中信Line Pay卡</figcaption>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-secondary me-1" onclick="showlinePayCardFeature()" type="button">卡片特色</button>
+            <button class="btn btn-outline-secondary me-1" onclick="showlinePayExclusiveOffers()" type="button">專屬優惠</button>
+            <button class="btn btn-outline-secondary me-1" onclick="showlinePayAdditionalBenefits()" type="button">附加權益</button>
+          </div>
+          <div>
+            <!-- Line Pay卡卡片特色內容區 -->
+            <div id="linePayCardFeature">
+              <div class="m-5">
+                <!-- 第一段內容 -->
+                <div>
+                  <div>
+                    <h4 class="text-success"><b>最高享15%回饋</b></h4>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>活動期間：2023/1/1~2023/12/31</li>
+                      <li>2023年行銷加碼回饋詳見<a class="text-decoration-none text-success-emphasis" target="_blank" 
+                        href="https://www.ctbcbank.com/content/dam/minisite/long/creditcard/NB2022112303/index.html">最新優惠活動</a></li>
+                      <li>海外消費
+                        <ul style="list-style-type: circle;">
+                          <li>LINE POINTS 2.8%回饋 (限信用卡)</li>
+                        </ul>
+                      </li>
+                      <li >一般消費
+                        <ul style="list-style-type: circle;">
+                          <li>LINE POINTS 1%回饋</li>
+                        </ul>
+                      </li>
+                      <li>一卡通加碼
+                        <ul style="list-style-type: circle;">
+                          <li>一卡通儲值金支付全臺大眾交通費用LINE POINTS 1%回饋(高鐵除外)</li>
+                        </ul>
+                      </li>
+                      <li></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p>*LINEPay卡各項LINE POINTS回饋限綁定LINEPay帳號者適用，請核可後儘速綁定。<a class=" text-success-emphasis ms-5" target="_blank" 
+                      href="https://www.ctbcbank.com/content/dam/twrbo/pdf/creditcard/NB2021112407.pdf">了解綁定</a></p>
+                  </div>
+                  <hr>
+                </div>
+                <!-- 第二段內容 -->
+                <div>
+                  <div>
+                    <h4 class="text-success"><b>最禮遇，免年費</b></h4>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>成功綁定LINE Pay或申請本行電子帳單期間，享終身免年費禮遇</li>
+                    </ul>
+                  </div>
+                  <hr>
+                </div>
+                <!-- 第三段內容 -->
+              </div>
+            </div>
+            <!-- Line Pay卡專屬優惠內容區 -->
+            <div id="linePayExclusiveOffers" class="d-none" >
+              <div>這是顯示Line Pay卡B內容的區域</div>
+            </div>
+            <!-- Line Pay卡附加權益內容區 -->
+            <div id="linePayAdditionalBenefits" class="d-none">
+              <div>這是顯示Line Pay卡C內容的區域</div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <!-- 廣告區 -->
+      <div class="col-2 bg-white">
+        <div class="mt-3">
+          <h5 class="text-center">ADVERTISEMENT</h5>
+          <a target="_blank" href="https://campus.w3schools.com/collections/course-catalog/products/front-end-course"><img class="w-100 h-75" src="/image/W3 school AD-3.png" alt="W3 school AD-2"></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- 返回最上面按鈕 -->
+  <div class="position-fixed fixed-bottom d-flex justify-content-end" id="topBtn">
+    <a class="btn btn-danger me-5 mb-5" class="" href="#top">TOP</a>
+  </div>
+  <!-- 註腳商標區 -->
+  <footer id="HomepageFooter">
+    <ul>
+      <li>鄧肯股份沒錢公司 建議瀏覽器版本:IE10、Chrome 4.0、Safari 5、FireFox 3.0 以上版本</li>
+      <li>電話:0800-096-000</li>
+    </ul>
+  </footer>
+</body>
+<script>
+  // ubear卡內容功能區
+  function showUbearCardContent(){
+    ubearCardContent.className = "col-8"
+    happinessMCardContent.className = "d-none col-8"
+    OpenPossibleCardContent.className = "d-none col-8"
+    JCardContent.className = "d-none col-8"
+    linePayCardContent.className = "d-none col-8"
+  }
+    function showubearCardFeature() {
+      ubearCardFeature.className = ""
+      ubearExclusiveOffers.className = "d-none"
+      ubearAdditionalBenefits.className = "d-none"
+    }
+    function showubearExclusiveOffers() {
+      ubearExclusiveOffers.className = "d-flex justify-content-center"
+      ubearCardFeature.className = "d-none"
+      ubearAdditionalBenefits.className = "d-none"
+    }
+    function showubearAdditionalBenefits() {
+      ubearAdditionalBenefits.className = "d-flex justify-content-center"
+      ubearCardFeature.className = "d-none"
+      ubearExclusiveOffers.className = "d-none"
+    }
+  // 聯邦幸福M卡內容功能區
+  function showHappinessMCardContent(){
+    happinessMCardContent.className = "col-8"
+    ubearCardContent.className = "d-none col-8"
+    OpenPossibleCardContent.className = "d-none col-8"
+    JCardContent.className = "d-none col-8"
+    linePayCardContent.className = "d-none col-8"
+  }
+    function showhappinessCardFeature(){
+      happinessCardFeature.className = "";
+      happinessExclusiveOffers.className = "d-none"
+      happinessAdditionalBenefits.className = "d-none"
+    }
+    function showhappinessExclusiveOffers(){
+      happinessExclusiveOffers.className = ""
+      happinessCardFeature.className = "d-none";
+      happinessAdditionalBenefits.className = "d-none"
+    }
+    function showhappinessAdditionalBenefits(){
+      happinessAdditionalBenefits.className = ""
+      happinessCardFeature.className = "d-none";
+      happinessExclusiveOffers.className = "d-none"
+    }
+      function showHappinessOffersspecialty(){
+        HappinessOffersspecialty.className = "";
+        HappinessOffersTravel.className = "d-none"
+        HappinessOffersTraffic.className = "d-none"
+        HappinessOffersDining.className = "d-none"
+      }
+      function showHappinessOffersTravel(){
+        HappinessOffersTravel.className = ""
+        HappinessOffersspecialty.className = "d-none";
+        HappinessOffersTraffic.className = "d-none"
+        HappinessOffersDining.className = "d-none"
+      }
+      function showHappinessOffersTraffic(){
+        HappinessOffersTraffic.className = ""
+        HappinessOffersspecialty.className = "d-none";
+        HappinessOffersTravel.className = "d-none"
+        HappinessOffersDining.className = "d-none"
+      }
+      function showHappinessOffersDining(){
+        HappinessOffersDining.className = ""
+        HappinessOffersspecialty.className = "d-none";
+        HappinessOffersTravel.className = "d-none"
+        HappinessOffersTraffic.className = "d-none"
+      }
+  // 富邦OP卡內容功能區
+  function showOpenPossibleCardContent(){
+    OpenPossibleCardContent.className = "col-8"
+    ubearCardContent.className = "d-none col-8"
+    happinessMCardContent.className = "d-none col-8"
+    JCardContent.className = "d-none col-8"
+    linePayCardContent.className = "d-none col-8"
+  }
+  function showopenPossibleCardFeature (){
+    openPossibleCardFeature.className = "";
+    openPossibleExclusiveOffers.className = "d-none"
+    openPossibleAdditionalBenefits.className = "d-none"
+  }
+  function showopenPossibleExclusiveOffers (){
+    openPossibleExclusiveOffers.className = ""
+    openPossibleCardFeature.className = "d-none";
+    openPossibleAdditionalBenefits.className = "d-none"
+  }
+  function showopenPossibleAdditionalBenefits (){
+    openPossibleAdditionalBenefits.className = ""
+    openPossibleCardFeature.className = "d-none";
+    openPossibleExclusiveOffers.className = "d-none"
+  }
+  // 富邦J卡內容功能區
+  function showJCardContent(){
+    JCardContent.className = "col-8"
+    ubearCardContent.className = "d-none col-8"
+    OpenPossibleCardContent.className = "d-none col-8"
+    happinessMCardContent.className = "d-none col-8"
+    linePayCardContent.className = "d-none col-8"
+  }
+  function showjCardFeature(){
+  jCardFeature.className = "";
+  jExclusiveOffers.className = "d-none";
+  jAdditionalBenefits.className = "d-none";
+  }
+  function showjExclusiveOffers(){
+  jExclusiveOffers.className = "";
+  jCardFeature.className = "d-none";
+  jAdditionalBenefits.className = "d-none";
+  }
+  function showjAdditionalBenefits(){
+  jAdditionalBenefits.className = "";
+  jCardFeature.className = "d-none";
+  jExclusiveOffers.className = "d-none";
+  }
+  // Line Pay卡內容功能區
+  function showlinePayCardContent(){
+    linePayCardContent.className = "col-8"
+    ubearCardContent.className = "d-none col-8"
+    happinessMCardContent.className = "d-none col-8"
+    OpenPossibleCardContent.className = "d-none col-8"
+    JCardContent.className = "d-none col-8"
+  }
+  function showlinePayCardFeature(){
+  linePayCardFeature.className = "";
+  linePayExclusiveOffers.className = "d-none";
+  linePayAdditionalBenefits.className = "d-none";
+  }
+  function showlinePayExclusiveOffers(){
+  linePayExclusiveOffers.className = "";
+  linePayCardFeature.className = "d-none";
+  linePayAdditionalBenefits.className = "d-none";
+  }
+function showlinePayAdditionalBenefits(){
+  linePayAdditionalBenefits.className = "";
+  linePayCardFeature.className = "d-none";
+  linePayExclusiveOffers.className = "d-none";
+  }
+</script>
+
+</html>

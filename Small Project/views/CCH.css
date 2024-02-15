@@ -1,0 +1,94 @@
+body{
+    /* background-color: rgba(216, 220, 223, 0.777); */
+    min-height: 100vh;
+    
+}
+#opinionFeedbackMain{
+    background-color: antiquewhite;
+}
+.nav-item{
+    font-size: 25px;
+}
+.nav-item:hover{
+    background-color: grey;
+}
+.nav-item:active{
+    background-color: rgb(124, 124, 29);
+}
+.nav-item:link{
+    color: white;
+
+}
+.nav-item:visited{
+    color: purple;
+}
+
+#carouselIndicators{
+    width: 65%;
+    margin-left: 17%;
+}
+#carouselPic{
+    width: 100%;
+    height:500px;
+    
+}
+
+#card{
+    display: flex;
+    justify-content: center;
+}
+#topBtn{
+    position: fixed;
+    bottom: 5vh;
+    right: 0;
+    text-decoration: none;
+    
+}
+#topBtn>button>a{
+    text-decoration: none;
+    
+    padding:9px 0 9px 0 ;
+    
+}
+#topBtn:link{
+    color: black;
+}
+#topBtn:visited{
+    color: black;
+}
+#HomepageFooter{
+    width: 100vw;
+    background-color: grey;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#HomepageFooter>ul>li{
+    width: 100%;
+    list-style: none;  
+}
+#introductionIndex{
+    background-color: antiquewhite;
+}
+#feedbackdiv{
+    width: 70%;
+    border: 5px solid antiquewhite;
+    height: 90vh;
+    background-image:url(./Pic\ Source/paper_image.jpg)
+}
+#creditCardsIndex{
+    background-color: antiquewhite;
+}
+#creditCardsContent{
+    background-image: url(./Pic\ Source/opening_book_image.jpg);
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size:contain;
+    height: 100vh;
+}
+/* 以下為Credit_cards區 */
+.cardsMainPic{
+    width: 31vw;
+    height: 50vh;
+}

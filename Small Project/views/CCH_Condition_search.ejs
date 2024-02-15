@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCH Condition Search</title>
+  <link rel="stylesheet" href="/css/CCH.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <script src="/js/bootstrap.bundle.js"></script>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/CCH.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/animate.css">
+</head>
+
+<body style="background-color: rgb(235, 231, 231);">
+  <!-- 導覽列內容區 -->
+  <nav class="navbar navbar-expand-lg bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><abbr title="CCH 首頁"><img style="width: 200px; " src="/image/Credit Card Hub Navbar-brand.png"
+        alt="Credit Card Hub"></abbr></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" aria-current="page" href="/introduction.html"
+              id="creditIntroLink">信用卡簡介</a>
+          </li>
+          <li class="nav-item ms-3">
+            <a class="nav-link text-white fw-bolder" href="/Condition_search" id="conditionSearchLink">條件查詢</a>
+          </li>
+          <li class="nav-item dropdown ms-3">
+            <a class="nav-link dropdown-toggle text-white fw-bolder" href="#" id="relatedLinkLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              相關連結
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Official_banks.html">各家銀行官網</a></li>
+              <li><a class="dropdown-item" href="/Credit_cards">信用卡總覽</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white fw-bolder" href="/Opinion_feedback.html" id="feedbackLink">意見回饋</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        <div class="me-4 mt-3">
+          <p class="fs-5 ">你好 <span class="text-white lh-1"> <%=emailName%></p>
+        </div>
+        <div class="d-flex mt-2">
+          <%if (emailName == "Guest") {%>
+          <form method="get" action="/login.html">
+            <input class="btn btn-outline-success" type="submit" value="登入"></input>
+          </form>
+        <%} else {%>
+          <div>
+            <a href="/membershipCenter.html"><abbr title="會員中心"><i style="font-size: 2rem;" class="bi bi-person-circle me-3"></i></abbr></a>
+          </div>
+          <form method="get" action="/logout.html">
+            <input class="btn btn-outline-success" type="submit" value="登出"></input>
+          </form>
+        <% } %>
+          
+        </div>
+      </div>    
+    </div>
+  </nav>
+  <main>
+    <section class="row">
+      <!-- 條件篩選索引區 -->
+      <section class="col-2 mb-5">
+        <div class="border border-3 border-secondary rounded mt-5 mx-3 bg-white">
+          <div>
+            <h4 class="text-center"><b>篩選</b></h4>
+            <hr>
+          </div>
+          <div>
+            <h5 class="fs-6"><b>合作銀行或機構</b></h5>
+            <hr class="mx-2">
+          </div>
+          <div class="mx-2">
+            <!-- 台北富邦 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseFubonBank" value="fubonBank"/>
+              <label class="form-check-label fs-6 " for="chooseFubonBank">台北富邦銀行</label>
+            </div>
+            <!-- 玉山銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)"  class="form-check-input " type="checkbox" role="switch" id="chooseEsunBank" value="esunBank"/>
+              <label class="form-check-label fs-6 " for="chooseEsunBank">玉山銀行</label>
+            </div>
+            <!-- 中國信託 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)"  class="form-check-input " type="checkbox" role="switch" id="chooseCTBCBank" value="CTBCBank"/>
+              <label class="form-check-label fs-6 " for="chooseCTBCBank">中國信託銀行</label>
+            </div>
+            <!-- 台新銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input " type="checkbox" role="switch" id="chooseTaishinBank" value="taishinBank"/>
+              <label class="form-check-label fs-6 " for="chooseTaishinBank">台新銀行</label>
+            </div>
+            <!-- 永豐銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input " type="checkbox" role="switch" id="chooseSinoPacBank" value="sinoPacBank"/>
+              <label class="form-check-label fs-6 " for="chooseSinoPacBank">永豐銀行</label>
+            </div>
+            <!-- 兆豐銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input " type="checkbox" role="switch" id="chooseMegaBank" value="megaBank"/>
+              <label class="form-check-label fs-6 " for="chooseMegaBank">兆豐銀行</label>
+            </div>
+            <!-- 台中銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input " type="checkbox" role="switch" id="chooseTaichungBank" value="taichungBank"/>
+              <label class="form-check-label fs-6 " for="chooseTaichungBank">台中銀行</label>
+            </div>
+            <!-- 聯邦銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseUBBank" value="UBBank"/>
+              <label class="form-check-label " for="chooseUBBank">聯邦銀行</label>
+            </div>
+            <!-- 匯豐銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseHSBCBank" value="HSBCBank"/>
+              <label class="form-check-label " for="chooseHSBCBank">匯豐銀行</label>
+            </div>
+            <!-- 渣打銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseSCBank" value="SCBank"/>
+              <label class="form-check-label " for="chooseSCBank">渣打銀行</label>
+            </div>
+            <!-- 星展銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseDBSBank" value="DBSBank"/>
+              <label class="form-check-label " for="chooseDBSBank">星展銀行</label>
+            </div>
+            <!-- 王道銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseOBank" value="OBank"/>
+              <label class="form-check-label " for="chooseOBank">王道銀行</label>
+            </div>
+            <!-- 新光銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseSKBank" value="SKBank"/>
+              <label class="form-check-label " for="chooseSKBank">新光銀行</label>
+            </div>
+            <!-- 國泰世華 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseCathayBank" value="CathayBank"/>
+              <label class="form-check-label " for="chooseCathayBank">國泰世華</label>
+            </div>
+            <!-- 遠東商銀 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseFEIBank" value="FEIBank"/>
+              <label class="form-check-label " for="chooseFEIBank">遠東商銀</label>
+            </div>
+            <!-- 台灣企銀 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseTBBank" value="TBBank"/>
+              <label class="form-check-label " for="chooseTBBank">台灣企銀</label>
+            </div>
+            <!-- 華南銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseHNCBank" value="HNCBank"/>
+              <label class="form-check-label " for="chooseHNCBank">華南銀行</label>
+            </div>
+            <!-- 第一銀行 -->
+            <div class="form-check form-switch d-flex justify-content-between mb-2">
+              <input onclick="showResult(value)" class="form-check-input" type="checkbox" role="switch" id="chooseFirstBank" value="FirstBank"/>
+              <label class="form-check-label " for="chooseFirstBank">第一銀行</label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 條件查詢內容區 -->
+      <section class="col-9">
+        <!-- 玉山ubear卡 -->
+        <div class="row mt-5 bg-white border border-3 border-dark rounded esunBank" style = "display: none;">
+          <div class="col">
+            <div class="mt-2">
+              <h5><b>玉山銀行 U Bear信用卡</b></h5>
+              <hr class="mx-2">
+            </div>
+            <div class="row">
+              <div class="col-2">
+                <div class="mb-2">
+                  <img style="width: 10rem;" src="/image/u-bear card pic.png" alt="">
+                </div>
+              </div>
+              <div class="col-2">
+                <h5 class="text-center text-info">年費</h5>
+                <p class="text-center"><b>首年免年費</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國外消費現金回饋</p>
+                <p class="text-muted lh-1">國內外網購不限通路最高5%</p>
+                <p class="fs-5"><b>5%</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國內消費現金回饋</p>
+                <p class="text-muted lh-1">指定影音/娛樂13%</p>
+                <p class="fs-5"><b>13%</b></p>
+              </div>
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <button class="btn btn-warning"> <a class="text-dark text-decoration-none" href="https://event.esunbank.com.tw/credit/UBear_money101/index.html?utm_source=web&utm_medium=display&utm_term=2310&utm_content=card&utm_campaign=cc_money101_2310_ubear_1">立即申請</a></button>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="col">
+                <div class="accordion">
+                  <div class="accordion-item">
+                    <h4 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" 
+                      data-bs-target="#UbearConditionSearchAccordionOne"><span class="text-success-emphsis">優惠</span>
+                      於2023/7/1~2023/12/31首次申辦玉山U Bear卡正卡且核卡，核卡後60天內網購最高5%現金回
+                      饋 (含基本1%+網購加碼2%+新卡網購加碼2%)</button>
+                    </h4>
+                  </div>
+                  <div class="accordion-collapse collapse bg-white" id="UbearConditionSearchAccordionOne">
+                      <div class="accordion-body">
+                        <ol>
+                          <li>新戶定義： <span class="text-danger">自申辦日起前6個月，未曾持有任何一張富邦信用卡正卡者。</span></li>
+                          
+                        </ol>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <!-- 富邦J卡 -->
+        <div class="row mt-5 bg-white border border-3 border-dark rounded fubonBank" style = "display: none;">
+          <div class="col">
+            <div class="mt-2">
+              <h5><b>台北富邦 J卡</b></h5>
+              <hr class="mx-2">
+            </div>
+            <div class="row">
+              <div class="col-2">
+                <div class="mb-2 d-flex justify-content-center">
+                  <img style="width: 6rem;height: 8rem;" src="/image/J card mini.gif" alt="J card mini">
+                </div>
+              </div>
+              <div class="col-2">
+                <h5 class="text-center text-info">年費</h5>
+                <p class="text-center"><b>首年免年費</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國外消費現金回饋</p>
+                <p class="text-muted lh-1">日韓3%無上限+加碼3%刷卡金(需登錄)</p>
+                <p class="fs-5"><b>6%</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國內消費現金回饋</p>
+                <p class="text-muted lh-1">國內一般消費1%+綁定富邦數位帳戶自扣本行信用卡費加碼0.7%</p>
+                <p class="fs-5"><b>1.7%</b></p>
+              </div>
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <button class="btn btn-warning"> <a class="text-dark text-decoration-none" href="https://www.fubon.com/banking/event/hot/omiyagecard/index.html?fromSC_code=M061">立即申請</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 中信Line Pay卡 -->
+        <div class="row mt-5 bg-white border border-3 border-dark rounded mb-5 CTBCBank" style = "display: none;">
+          <div class="col">
+            <div class="mt-2">
+              <h5><b>中國信託 Line Pay卡</b> <span class="badge bg-warning ms-3">精選產品</span></h5>
+              <hr class="mx-2">
+            </div>
+            <div class="row">
+              <div class="col-2">
+                <div class="mb-2">
+                  <img style="width: 10rem;" src="/image/Line Pay Card.jpg" alt="Line Pay Card">
+                </div>
+              </div>
+              <div class="col-2">
+                <h5 class="text-center text-info">年費</h5>
+                <p class="text-center"><b>首年免年費</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國外消費現金回饋</p>
+                <p class="text-muted lh-1">本項實為海外消費以LINE POINTS回饋</p>
+                <p class="fs-5"><b>2.8%</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國內消費現金回饋</p>
+                <p class="text-muted lh-1">本項實為一般消費以LINE POINTS回饋</p>
+                <p class="fs-5"><b>1%</b></p>
+              </div>
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <button class="btn btn-warning"> <a class="text-dark text-decoration-none" href="https://event.esunbank.com.tw/credit/UBear_money101/index.html?utm_source=web&utm_medium=display&utm_term=2310&utm_content=card&utm_campaign=cc_money101_2310_ubear_1">立即申請</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 台新玫瑰卡 -->
+        <div class="row mt-5 bg-white border border-3 border-dark rounded mb-5 taishinBank" style = "display: none;">
+          <div class="col">
+            <div class="mt-2">
+              <h5><b>台新銀行 玫瑰Giving卡</b></h5>
+              <hr class="mx-2">
+            </div>
+            <div class="row">
+              <div class="col-2">
+                <div class="mb-2">
+                  <img style="width: 10rem;" src="/image/Rose-Giving card pic.gif" alt="Rose-Giving card">
+                </div>
+              </div>
+              <div class="col-2">
+                <h5 class="text-center text-info">年費</h5>
+                <p class="text-center"><b>首年免年費</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國外消費現金回饋</p>
+                <p class="text-muted lh-1">有設定台新帳戶扣繳卡費</p>
+                <p class="fs-5"><b>3%</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國內消費現金回饋</p>
+                <p class="fs-5"><b>3%</b></p>
+              </div>
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <button class="btn btn-warning"> <a class="text-dark text-decoration-none" href="https://www.taishinbank.com.tw/eServiceA/CreditCardAP/apply/index.jsp?pc=280">立即申請</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 台新GOGO卡 -->
+        <div class="row mt-5 bg-white border border-3 border-dark rounded mb-5 taishinBank" style = "display: none;">
+          <div class="col">
+            <div class="mt-2">
+              <h5><b>台新銀行 GoGo iCash御璽卡</b></h5>
+              <hr class="mx-2">
+            </div>
+            <div class="row">
+              <div class="col-2">
+                <div class="mb-2">
+                  <img style="width: 10rem;" src="/image/gogo card.png" alt="gogo card">
+                </div>
+              </div>
+              <div class="col-2">
+                <h5 class="text-center text-info">年費</h5>
+                <p class="text-center"><b>首年免年費</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國外消費現金回饋</p>
+                <p class="fs-5"><b>0.5%</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國內消費現金回饋</p>
+                <p class="fs-5"><b>3.8%</b></p>
+              </div>
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <button class="btn btn-warning"> <a class="text-dark text-decoration-none" href="https://www.taishinbank.com.tw/eServiceA/CreditCardAP/apply/index.jsp?pc=280">立即申請</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 永豐幣倍卡 -->
+        <div class="row mt-5 bg-white border border-3 border-dark rounded mb-5 sinoPacBank" style = "display: none;">
+          <div class="col">
+            <div class="mt-2">
+              <h5><b>永豐銀行 幣倍卡</b></h5>
+              <hr class="mx-2">
+            </div>
+            <div class="row">
+              <div class="col-2">
+                <div class="mb-2">
+                  <img style="width: 10rem;" src="/image/coin double card.png" alt="coin double card.png">
+                </div>
+              </div>
+              <div class="col-2">
+                <h5 class="text-center text-info">年費</h5>
+                <p class="text-center"><b>首年免年費</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國外消費現金回饋</p>
+                <p class="text-muted lh-1">旅遊通路/訂房網/海外網購</p>
+                <p class="fs-5"><b>10%</b></p>
+              </div>
+              <div class="col-3 text-center">
+                <p class="text-primary lh-1">國內消費現金回饋</p>
+                <p class="text-muted lh-1">國內旅遊通路 (訂房網/旅行社/飯店)</p>
+                <p class="fs-5"><b>6%</b></p>
+              </div>
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <button class="btn btn-warning"> <a class="text-dark text-decoration-none" href="https://www.taishinbank.com.tw/eServiceA/CreditCardAP/apply/index.jsp?pc=280">立即申請</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <!-- 返回最上面按鈕 -->
+  <div class="position-fixed fixed-bottom d-flex justify-content-end" id="topBtn">
+    <a class="btn btn-danger me-5 mb-5" class="" href="#top">TOP</a>
+  </div>
+  <!-- 註腳商標區 -->
+  <footer id="HomepageFooter">
+    <ul>
+      <li>鄧肯股份沒錢公司 建議瀏覽器版本:IE10、Chrome 4.0、Safari 5、FireFox 3.0 以上版本</li>
+      <li>電話:0800-096-000</li>
+    </ul>  
+  </footer>
+</body>
+<script>
+  function showResult(bankName){
+    let bank = document.getElementsByClassName(bankName);
+    for(var x = 0;x < bank.length;x++){
+      var status = bank[x].style["display"];
+      if(status == "none"){
+        bank[x].style = "display : block";
+      }
+      else{
+        bank[x].style = "display : none";
+      }
+    }
+    // status1 = bank[0].style["display"];
+    // status2 = bank[1].style["display"];
+    // if (status1 == "none" && status2 == "none"){
+    //   bank[0].style = "display : block";
+    //   bank[1].style = "display : block";
+    // }
+    // else{
+    //   bank[0].style = "display : none";
+    //   bank[1].style = "display : none";
+    // }
+  }
+</script>
+</html>
