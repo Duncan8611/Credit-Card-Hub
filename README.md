@@ -1,2 +1,2 @@
 # Credit-Card-Hub
-personal project made during the java lesson
+Personal project made during the java lesson, and it's just for education usage.
